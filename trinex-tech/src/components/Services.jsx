@@ -31,10 +31,9 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-24">
+    <section id="services" className="py-12">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 p-12">
         <div className="mb-16">
-           <span className="section-number">02</span>
            <h2 className="text-4xl font-black uppercase tracking-tight">What We Do</h2>
            <p className="text-secondary mt-4 max-w-lg">
              Our expertise spans across the entire software development lifecycle, ensuring excellence at every stage.

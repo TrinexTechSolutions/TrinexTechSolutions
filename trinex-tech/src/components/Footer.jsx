@@ -3,13 +3,12 @@ import { MessageCircle } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="py-24 bg-black text-white overflow-hidden">
+    <footer className="py-12 bg-black text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 p-12">
         <div className="flex flex-col md:flex-row justify-between items-center gap-12">
           <div className="flex flex-col gap-6">
-             <a href="#" className="flex items-center gap-2">
-                <span className="text-2xl font-black tracking-tighter uppercase text-white">Trinex</span>
-                <span className="w-3 h-3 bg-white rounded-full mb-1"></span>
+             <a href="#" className="flex items-center">
+                <img src="/trinex_logo.svg" alt="Trinex Tech" className="h-12 w-auto brightness-0 invert" />
              </a>
              <p className="text-white/60 max-w-sm text-sm leading-relaxed">
                 Delivering reliable software solutions with precision and performance. Engineering the next generation of scalable platforms.

@@ -8,11 +8,10 @@ const Clients = () => {
   ];
 
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section className="py-12 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 p-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-16">
            <div>
-             <span className="section-number">06</span>
              <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tight">Our Clients</h2>
              <p className="text-secondary mt-4 max-w-lg">
                 We are proud to work with clients across different industries, helping them achieve their digital transformation goals.

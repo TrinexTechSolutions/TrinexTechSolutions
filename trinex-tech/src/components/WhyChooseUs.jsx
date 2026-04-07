@@ -12,11 +12,10 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="py-24">
+    <section className="py-12">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 p-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
            <div>
-             <span className="section-number">04</span>
              <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none mb-8">
                Why <br/>Trinex Tech <br/>Solutions
              </h2>

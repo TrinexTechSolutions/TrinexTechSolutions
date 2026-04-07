@@ -28,9 +28,8 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center">
-        <a href="#" className="flex items-center gap-2">
-          <span className="text-xl font-black tracking-tighter uppercase">Trinex</span>
-          <span className="w-2 h-2 bg-black rounded-full mb-1"></span>
+        <a href="#" className="flex items-center group">
+          <img src="/trinex_logo.svg" alt="Trinex Tech" className="h-10 w-auto group-hover:scale-105 transition-transform" />
         </a>
 
         {/* Desktop Nav */}

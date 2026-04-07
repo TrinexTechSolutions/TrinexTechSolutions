@@ -3,11 +3,10 @@ import { motion } from 'framer-motion';
 
 const About = () => {
   return (
-    <section id="about" className="py-24">
+    <section id="about" className="py-12">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 p-12">
         <div className="flex flex-col md:flex-row gap-16 md:gap-32">
           <div className="md:w-1/3">
-            <span className="section-number">01</span>
             <h2 className="text-4xl font-black uppercase tracking-tight leading-none mb-8">
               About <br/> Trinex Tech <br/> Solutions
             </h2>

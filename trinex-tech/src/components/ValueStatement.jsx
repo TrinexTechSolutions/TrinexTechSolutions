@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const ValueStatement = () => {
   return (
-    <section className="py-32 bg-black text-white relative overflow-hidden">
+    <section className="py-16 bg-black text-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 text-center">
          <motion.div
            initial={{ opacity: 0, scale: 0.95 }}

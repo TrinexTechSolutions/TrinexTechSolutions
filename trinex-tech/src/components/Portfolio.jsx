@@ -21,11 +21,10 @@ const Portfolio = () => {
   ];
 
   return (
-    <section id="portfolio" className="py-24">
+    <section id="portfolio" className="py-12">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 p-12">
         <div className="mb-24 flex flex-col md:flex-row justify-between items-end">
            <div>
-             <span className="section-number">05</span>
              <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tight">Our Work</h2>
              <p className="text-secondary mt-4 max-w-lg">
                 Each project reflects our commitment to performance, reliability, and precision.

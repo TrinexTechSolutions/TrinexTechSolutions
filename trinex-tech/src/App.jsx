@@ -25,8 +25,8 @@ function App() {
         <ValueStatement />
         <Services />
         <Technologies />
-        <WhyChooseUs />
         <Portfolio />
+        <WhyChooseUs />
         <Clients />
         <Contact />
       </main>

@@ -4,11 +4,10 @@ import { Send, Mail, Phone, MapPin } from 'lucide-react';
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-24 bg-white overflow-hidden">
+    <section id="contact" className="py-12 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 p-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
           <div>
-            <span className="section-number">07</span>
             <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none mb-8">
               Let’s Build <br/>Something Great <br/>Together
             </h2>
