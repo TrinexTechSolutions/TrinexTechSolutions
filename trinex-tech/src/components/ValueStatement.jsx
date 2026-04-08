@@ -11,9 +11,7 @@ const ValueStatement = () => {
            viewport={{ once: true }}
            transition={{ duration: 0.8 }}
          >
-           <span className="text-xs font-bold uppercase tracking-[0.4em] text-white mb-8 block">
-             CORE PHILOSOPHY
-           </span>
+           
            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black leading-tight max-w-5xl mx-auto text-balance text-white">
              We don’t just develop software — we build systems that are reliable, scalable, and built to last.
            </h2>

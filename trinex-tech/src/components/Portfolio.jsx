@@ -21,17 +21,17 @@ const Portfolio = () => {
     {
       id: '01',
       title: 'Civic Technologies',
-      description: 'Turnkey electrical and MEP solutions provider specializing in industrial and cleanroom environments.',
-      longDescription: 'Civic Techno Services is a well-established electrical and MEP solutions company delivering end-to-end turnkey services from initial design to final execution. The company specializes in cleanroom electrical systems, ensuring safe, dust-free, and highly reliable power solutions for controlled environments. With strong expertise in project planning, engineering, and execution, Civic Techno has built a reputation for delivering projects on time, within budget, and with high precision. Its skilled workforce and technical capabilities make it a trusted partner for industrial and commercial electrical infrastructure projects.',
-      category: 'Electrical & MEP Services',
+      description: 'High-performance corporate web platform developed for an MEP solutions leader, featuring custom animations and enterprise-grade architecture.',
+      longDescription: 'We engineered a robust digital presence for Civic Techno Services, a global leader in industrial MEP and cleanroom solutions. Our team developed a high-performance React application featuring custom loaders, smooth transitions, and a clean, professional aesthetic that reflects the client’s precision in engineering. The project focused on technical scalability, modern UI/UX, and strong semantic SEO to establish their industry authority.',
+      category: 'Software Engineering',
       image: '/Civic2.png',
       link: 'https://www.civictechno.com/'
     },
     {
       id: '02',
       title: 'Dandu Interiors',
-      description: 'Modern interior design portfolio website showcasing residential and commercial projects with a clean and elegant user experience.',
-      longDescription: 'Dandu Interiors is a portfolio-driven website designed to highlight the company’s expertise in residential and commercial interior design. The platform focuses on clean layout, high-quality visuals, and smooth navigation to create a premium browsing experience. We developed a responsive and performance-optimized website that allows users to explore project galleries, understand design capabilities, and easily get in touch for consultations. The design emphasizes simplicity, visual storytelling, and a professional brand presence.',
+      description: 'Visually immersive interior design portfolio application focused on premium visual storytelling and seamless cross-device performance.',
+      longDescription: 'We developed a premium digital portfolio for Dandu Interiors to highlight their architectural excellence. The web application features a custom image optimization engine for high-resolution galleries, interactive project layouts, and a minimalist design language. Built with React and optimized for Vercel, the platform delivers a lightning-fast user experience that emphasizes visual storytelling and professional brand presence.',
       category: 'Web Design & Development',
       image: '/Dandu2.png',
       link: 'https://dandu-interior.vercel.app/'
@@ -61,13 +61,13 @@ const Portfolio = () => {
               className="group grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
             >
               <div
-                className="lg:col-span-7 overflow-hidden border border-border group-hover:border-black transition-all duration-500 cursor-pointer"
+                className="lg:col-span-7 overflow-hidden transition-all duration-500 cursor-pointer"
                 onClick={() => setSelectedProject(project)}
               >
                 <img
                   src={project.image}
                   alt={`${project.title} - ${project.category} porfolio piece`}
-                  className="w-full aspect-[16/9] object-cover grayscale group-hover:grayscale-0 transition-all duration-700 pointer-events-none"
+                  className="w-full aspect-[16/9] object-contain grayscale group-hover:grayscale-0 transition-all duration-700 pointer-events-none"
                   loading="lazy"
                 />
               </div>
@@ -131,17 +131,17 @@ const Portfolio = () => {
               <div className="max-w-7xl mx-auto">
                 <div className="mb-16">
                   <div className="flex items-center gap-4 mb-8">
-                    <span className="text-xs font-mono text-black/40">{selectedProject.id}</span>
-                    <span className="w-12 h-px bg-black/10"></span>
-                    <span className="text-xs font-bold uppercase tracking-widest text-black/60">{selectedProject.category}</span>
+                    <span className="text-xs font-mono text-black">{selectedProject.id}</span>
+                    <span className="w-12 h-px bg-black"></span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-black">{selectedProject.category}</span>
                   </div>
-                  <h2 className="text-6xl lg:text-8xl font-black uppercase tracking-tighter mb-12">{selectedProject.title}</h2>
+                  <h2 className="text-6xl lg:text-8xl font-black uppercase tracking-tighter mb-12 text-black">{selectedProject.title}</h2>
 
-                  <div className="w-full aspect-[21/9] overflow-hidden bg-border mb-24">
+                  <div className="w-full aspect-[21/9] overflow-hidden mb-24 flex items-center justify-center">
                     <img
                       src={selectedProject.image}
                       alt={selectedProject.title}
-                      className="w-full h-full object-cover"
+                      className="max-h-full max-w-full object-contain"
                     />
                   </div>
                 </div>
