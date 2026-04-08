@@ -3,8 +3,14 @@ import { motion } from 'framer-motion';
 
 const Clients = () => {
   const clients = [
-    { name: 'Civic Technologies', type: 'Software Solutions' },
-    { name: 'Dandu Interiors', type: 'Design & Architecture' }
+    {
+      logo: '/Civiclogo.webp',
+      logoAlt: 'Civic Technologies logo'
+    },
+    {
+      logo: '/DanduLogo.svg',
+      logoAlt: 'Dandu Interiors logo'
+    }
   ];
 
   return (
@@ -13,43 +19,36 @@ const Clients = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-16">
            <div>
              <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tight">Our Clients</h2>
-             <p className="text-secondary mt-4 max-w-lg">
+             <p className="text-secondary mt-4 whitespace-nowrap">
                 We are proud to work with clients across different industries, helping them achieve their digital transformation goals.
              </p>
            </div>
-           <div className="hidden lg:block border-l border-border pl-12">
-              <p className="text-xs font-medium text-secondary leading-relaxed">
-                 "Building trust through successful delivery and long-term partnerships. We focus on outcome-driven engineering for global enterprises."
-              </p>
-           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 border-t border-l border-border">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-14">
           {clients.map((client, index) => (
             <motion.div
-              key={client.name}
+              key={client.logo}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className="p-12 border-b border-r border-border hover:bg-black group transition-all duration-300 flex flex-col items-center justify-center gap-4 text-center aspect-square"
+              className="group transition-all duration-300 flex items-center justify-center"
             >
-              <div className="w-16 h-16 border-2 border-border group-hover:border-white/20 group-hover:rotate-45 transition-all duration-500 flex items-center justify-center">
-                 <span className="text-xl font-black group-hover:-rotate-45 group-hover:text-white transition-all">
-                    {client.name.charAt(0)}
-                 </span>
-              </div>
-              <div>
-                <h4 className="text-sm font-bold uppercase tracking-widest text-black group-hover:text-white transition-all">
-                  {client.name}
-                </h4>
-                <p className="text-[10px] font-medium text-secondary group-hover:text-white/40 mt-1 uppercase tracking-widest">
-                  {client.type}
-                </p>
+              <div className="w-44 h-28 md:w-56 md:h-32 transition-all duration-500 flex items-center justify-center bg-white px-4">
+                <img
+                  src={client.logo}
+                  alt={client.logoAlt}
+                  className="max-w-full max-h-16 md:max-h-20 object-contain"
+                />
               </div>
             </motion.div>
           ))}
         </div>
+
+        <p className="text-xs font-medium text-secondary text-center whitespace-nowrap mt-12">
+          "Building trust through successful delivery and long-term partnerships. We focus on outcome-driven engineering for global enterprises."
+        </p>
       </div>
     </section>
   );

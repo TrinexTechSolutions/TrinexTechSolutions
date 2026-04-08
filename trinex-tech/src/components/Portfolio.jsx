@@ -1,22 +1,40 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink, X, ArrowRight } from 'lucide-react';
 
 const Portfolio = () => {
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedProject]);
+
   const projects = [
     {
       id: '01',
       title: 'Civic Technologies',
       description: 'Building modern digital infrastructure for civic engagement and government transparency.',
+      longDescription: 'Civic Technologies is a flagship project aimed at bridging the gap between citizens and local governance. We developed a highly secure, transparent platform that allows for real-time tracking of public projects, digital voting, and direct communication with representatives. The architecture handles massive traffic while maintaining strict data privacy standards.',
       category: 'Software Solutions',
-      image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=1200'
+      image: '/Civic2.png',
+      link: 'https://www.civictechno.com/'
     },
     {
       id: '02',
       title: 'Dandu Interiors',
       description: 'A premium interior design platform showcasing elegant spaces and architectural excellence.',
+      longDescription: 'Dandu Interiors required a digital presence that matched their sophisticated physical designs. We built a visually immersive portfolio site featuring high-resolution galleries, interactive 3D room tours, and a streamlined consultation booking system. The site emphasizes minimalist elegance and lightning-fast performance across all devices.',
       category: 'Design & Tech',
-      image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200'
+      image: '/Dandu2.png',
+      link: 'https://www.civictechno.com/' // Placeholder for Dandu Interiors
     }
   ];
 
@@ -46,7 +64,10 @@ const Portfolio = () => {
               transition={{ duration: 0.8 }}
               className="group grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
             >
-              <div className="lg:col-span-7 overflow-hidden border border-border group-hover:border-black transition-all duration-500">
+              <div 
+                className="lg:col-span-7 overflow-hidden border border-border group-hover:border-black transition-all duration-500 cursor-pointer"
+                onClick={() => setSelectedProject(project)}
+              >
                 <motion.img 
                   src={project.image} 
                   alt={project.title}
@@ -65,7 +86,10 @@ const Portfolio = () => {
                   </span>
                 </div>
 
-                <h3 className="text-3xl lg:text-4xl font-black tracking-tight group-hover:underline underline-offset-8">
+                <h3 
+                  className="text-3xl lg:text-4xl font-black tracking-tight group-hover:underline underline-offset-8 cursor-pointer"
+                  onClick={() => setSelectedProject(project)}
+                >
                   {project.title}
                 </h3>
 
@@ -74,18 +98,90 @@ const Portfolio = () => {
                 </p>
 
                 <div className="mt-4">
-                  <a href="https://www.civictechno.com/" target="_blank" rel="noopener noreferrer" className="btn-primary flex items-center justify-center gap-3 w-fit group">
+                  <button 
+                    onClick={() => setSelectedProject(project)}
+                    className="btn-primary flex items-center justify-center gap-3 w-fit group"
+                  >
                     VIEW DETAILS
-                    <ExternalLink size={16} className="group-hover:rotate-45 transition-transform" />
-                  </a>
+                    <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  </button>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Project Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] bg-white flex flex-col"
+          >
+            {/* Floating Close Button */}
+            <button 
+              onClick={() => setSelectedProject(null)}
+              className="fixed top-24 right-8 w-14 h-14 bg-black text-white flex items-center justify-center rounded-full hover:scale-110 transition-all z-[10000]"
+              aria-label="Close"
+            >
+              <X size={28} />
+            </button>
+
+            {/* Modal Content */}
+            <div className="flex-1 overflow-y-auto px-6 lg:px-12 py-24 no-scrollbar">
+              <div className="max-w-7xl mx-auto">
+                <div className="mb-16">
+                  <div className="flex items-center gap-4 mb-8">
+                    <span className="text-xs font-mono text-black/40">{selectedProject.id}</span>
+                    <span className="w-12 h-px bg-black/10"></span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-black/60">{selectedProject.category}</span>
+                  </div>
+                  <h2 className="text-6xl lg:text-8xl font-black uppercase tracking-tighter mb-12">{selectedProject.title}</h2>
+                  
+                  <div className="w-full aspect-[21/9] overflow-hidden bg-border mb-24">
+                    <img 
+                      src={selectedProject.image} 
+                      alt={selectedProject.title} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32">
+                  <div className="flex flex-col gap-8">
+                    <p className="text-2xl lg:text-3xl font-bold leading-tight text-foreground">
+                      {selectedProject.description}
+                    </p>
+                    <div className="w-12 h-1 bg-black"></div>
+                  </div>
+                  
+                  <div className="flex flex-col gap-12">
+                    <p className="text-lg text-secondary leading-relaxed font-medium">
+                      {selectedProject.longDescription}
+                    </p>
+                    
+                    <a 
+                      href={selectedProject.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="btn-primary group flex items-center gap-2 transition-all w-fit"
+                    >
+                      VISIT LIVE SITE
+                      <ExternalLink size={16} className="group-hover:rotate-45 transition-transform" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
 
 export default Portfolio;
+
