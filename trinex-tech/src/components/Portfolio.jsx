@@ -21,59 +21,54 @@ const Portfolio = () => {
     {
       id: '01',
       title: 'Civic Technologies',
-      description: 'Building modern digital infrastructure for civic engagement and government transparency.',
-      longDescription: 'Civic Technologies is a flagship project aimed at bridging the gap between citizens and local governance. We developed a highly secure, transparent platform that allows for real-time tracking of public projects, digital voting, and direct communication with representatives. The architecture handles massive traffic while maintaining strict data privacy standards.',
-      category: 'Software Solutions',
+      description: 'Turnkey electrical and MEP solutions provider specializing in industrial and cleanroom environments.',
+      longDescription: 'Civic Techno Services is a well-established electrical and MEP solutions company delivering end-to-end turnkey services from initial design to final execution. The company specializes in cleanroom electrical systems, ensuring safe, dust-free, and highly reliable power solutions for controlled environments. With strong expertise in project planning, engineering, and execution, Civic Techno has built a reputation for delivering projects on time, within budget, and with high precision. Its skilled workforce and technical capabilities make it a trusted partner for industrial and commercial electrical infrastructure projects.',
+      category: 'Electrical & MEP Services',
       image: '/Civic2.png',
       link: 'https://www.civictechno.com/'
     },
     {
       id: '02',
       title: 'Dandu Interiors',
-      description: 'A premium interior design platform showcasing elegant spaces and architectural excellence.',
-      longDescription: 'Dandu Interiors required a digital presence that matched their sophisticated physical designs. We built a visually immersive portfolio site featuring high-resolution galleries, interactive 3D room tours, and a streamlined consultation booking system. The site emphasizes minimalist elegance and lightning-fast performance across all devices.',
-      category: 'Design & Tech',
+      description: 'Modern interior design portfolio website showcasing residential and commercial projects with a clean and elegant user experience.',
+      longDescription: 'Dandu Interiors is a portfolio-driven website designed to highlight the company’s expertise in residential and commercial interior design. The platform focuses on clean layout, high-quality visuals, and smooth navigation to create a premium browsing experience. We developed a responsive and performance-optimized website that allows users to explore project galleries, understand design capabilities, and easily get in touch for consultations. The design emphasizes simplicity, visual storytelling, and a professional brand presence.',
+      category: 'Web Design & Development',
       image: '/Dandu2.png',
-      link: 'https://www.civictechno.com/' // Placeholder for Dandu Interiors
+      link: 'https://dandu-interior.vercel.app/'
     }
   ];
 
   return (
-    <section id="portfolio" className="py-12">
+    <section id="portfolio" className="py-12" aria-labelledby="portfolio-heading">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 p-12">
         <div className="mb-24 flex flex-col md:flex-row justify-between items-end">
-           <div>
-             <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tight">Our Work</h2>
-             <p className="text-secondary mt-4 max-w-lg">
-                Each project reflects our commitment to performance, reliability, and precision.
-             </p>
-           </div>
-           <div className="hidden lg:block h-px flex-1 bg-border mx-12 mb-6"></div>
-           <div className="text-[10px] font-bold uppercase tracking-widest text-black/40 mb-6">
-              RECENT DELIVERIES
-           </div>
+          <header>
+            <h2 id="portfolio-heading" className="text-4xl lg:text-5xl font-black uppercase tracking-tight">Our Work & Projects</h2>
+            <p className="text-secondary mt-4 max-w-lg">
+              Showcasing our commitment to <strong className="text-black">performance-driven software engineering</strong> and design excellence.
+            </p>
+          </header>
+          <div className="hidden lg:block h-px flex-1 bg-border mx-12 mb-6"></div>
+          <div className="text-[10px] font-bold uppercase tracking-widest text-black/40 mb-6">
+            RECENT DELIVERIES
+          </div>
         </div>
 
         <div className="flex flex-col gap-32">
           {projects.map((project, index) => (
-            <motion.div
+            <article
               key={project.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
               className="group grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
             >
-              <div 
+              <div
                 className="lg:col-span-7 overflow-hidden border border-border group-hover:border-black transition-all duration-500 cursor-pointer"
                 onClick={() => setSelectedProject(project)}
               >
-                <motion.img 
-                  src={project.image} 
-                  alt={project.title}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.8 }}
+                <img
+                  src={project.image}
+                  alt={`${project.title} - ${project.category} porfolio piece`}
                   className="w-full aspect-[16/9] object-cover grayscale group-hover:grayscale-0 transition-all duration-700 pointer-events-none"
+                  loading="lazy"
                 />
               </div>
 
@@ -86,7 +81,7 @@ const Portfolio = () => {
                   </span>
                 </div>
 
-                <h3 
+                <h3
                   className="text-3xl lg:text-4xl font-black tracking-tight group-hover:underline underline-offset-8 cursor-pointer"
                   onClick={() => setSelectedProject(project)}
                 >
@@ -98,16 +93,17 @@ const Portfolio = () => {
                 </p>
 
                 <div className="mt-4">
-                  <button 
+                  <button
                     onClick={() => setSelectedProject(project)}
                     className="btn-primary flex items-center justify-center gap-3 w-fit group"
+                    aria-label={`View project details for ${project.title}`}
                   >
-                    VIEW DETAILS
+                    VIEW CASE STUDY
                     <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </div>
-            </motion.div>
+            </article>
           ))}
         </div>
       </div>
@@ -115,14 +111,14 @@ const Portfolio = () => {
       {/* Project Modal */}
       <AnimatePresence>
         {selectedProject && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[9999] bg-white flex flex-col"
           >
             {/* Floating Close Button */}
-            <button 
+            <button
               onClick={() => setSelectedProject(null)}
               className="fixed top-24 right-8 w-14 h-14 bg-black text-white flex items-center justify-center rounded-full hover:scale-110 transition-all z-[10000]"
               aria-label="Close"
@@ -140,11 +136,11 @@ const Portfolio = () => {
                     <span className="text-xs font-bold uppercase tracking-widest text-black/60">{selectedProject.category}</span>
                   </div>
                   <h2 className="text-6xl lg:text-8xl font-black uppercase tracking-tighter mb-12">{selectedProject.title}</h2>
-                  
+
                   <div className="w-full aspect-[21/9] overflow-hidden bg-border mb-24">
-                    <img 
-                      src={selectedProject.image} 
-                      alt={selectedProject.title} 
+                    <img
+                      src={selectedProject.image}
+                      alt={selectedProject.title}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -157,15 +153,15 @@ const Portfolio = () => {
                     </p>
                     <div className="w-12 h-1 bg-black"></div>
                   </div>
-                  
+
                   <div className="flex flex-col gap-12">
                     <p className="text-lg text-secondary leading-relaxed font-medium">
                       {selectedProject.longDescription}
                     </p>
-                    
-                    <a 
-                      href={selectedProject.link} 
-                      target="_blank" 
+
+                    <a
+                      href={selectedProject.link}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="btn-primary group flex items-center gap-2 transition-all w-fit"
                     >

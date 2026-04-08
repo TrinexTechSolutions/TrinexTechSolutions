@@ -39,12 +39,12 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-12">
+    <section id="about" className="py-12" aria-labelledby="about-heading">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 p-12">
         <div className="flex flex-col md:flex-row gap-16 md:gap-32">
           <div className="md:w-1/3">
-            <h2 className="text-4xl font-black uppercase tracking-tight leading-none mb-8">
-              About <br /> Trinex Tech <br /> Solutions
+            <h2 id="about-heading" className="text-4xl font-black uppercase tracking-tight leading-none mb-8">
+              Strategic <br /> IT Solutions <br /> & Development
             </h2>
             <div className="w-12 h-1 bg-black mb-12"></div>
             
@@ -52,29 +52,29 @@ const About = () => {
               onClick={() => setShowFounders(true)}
               className="btn-primary group flex items-center gap-2 transition-all w-fit"
             >
-              VIEW MORE
+              OUR LEADERSHIP
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 
           <div className="md:w-2/3 flex flex-col gap-8">
-            <p className="text-2xl lg:text-3xl font-bold leading-tight text-foreground">
-              Trinex Tech Solutions is a technology-driven company focused on delivering scalable, secure, and high-quality software solutions.
+            <p className="text-2xl lg:text-3xl font-bold leading-tight text-foreground text-balance">
+              Trinex Tech Solutions is a global technology partner specializing in <span className="underline decoration-black/20 decoration-2 underline-offset-4">scalable software solutions</span> and enterprise-grade architecture.
             </p>
             <p className="text-lg text-secondary leading-relaxed">
-              We specialize in building robust web applications, managing seamless deployments, and delivering complete turnkey solutions. Our goal is simple — to transform ideas into powerful digital products that drive real business results.
+              We empower startups and enterprises with high-performance <strong className="font-bold text-black">web development</strong>, <strong className="font-bold text-black">custom software engineering</strong>, and strategic <strong className="font-bold text-black">digital marketing</strong>. Our mission is to bridge the gap between complex technical challenges and business growth.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8">
               <div>
-                <h4 className="text-xs font-black uppercase tracking-widest text-black mb-4">Our Vision</h4>
+                <h3 className="text-xs font-black uppercase tracking-widest text-black mb-4">Our Vision</h3>
                 <p className="text-sm text-secondary leading-relaxed">
-                  To be the global benchmarks for engineering excellence and digital innovation.
+                  To set global benchmarks for engineering excellence, helping businesses dominate their niche through innovation.
                 </p>
               </div>
               <div>
-                <h4 className="text-xs font-black uppercase tracking-widest text-black mb-4">Our Mission</h4>
+                <h3 className="text-xs font-black uppercase tracking-widest text-black mb-4">Our Mission</h3>
                 <p className="text-sm text-secondary leading-relaxed">
-                  Empowering businesses through cutting-edge technology that scales with their ambition.
+                  Delivering cutting-edge <strong className="font-semibold text-black">software development services</strong> that scale seamlessly with your ambition.
                 </p>
               </div>
             </div>

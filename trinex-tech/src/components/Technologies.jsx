@@ -61,20 +61,20 @@ const Technologies = () => {
   ];
 
   return (
-    <section className="py-12 bg-white">
+    <section id="technologies" className="py-12 bg-white" aria-labelledby="tech-heading">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row gap-12">
         {/* Left Column: Heading */}
         <div className="md:w-1/3">
-          <h2 className="text-5xl font-black text-black mb-4">Technologies</h2>
+          <h2 id="tech-heading" className="text-5xl font-black text-black mb-4">Core Stack</h2>
           <p className="text-[#6C757D] text-sm leading-relaxed max-w-xs">
-            We leverage modern technologies to craft innovative and future-ready solutions.
+            We leverage modern technologies to craft <strong className="text-black">innovative and future-ready solutions</strong> for our clients.
           </p>
         </div>
 
         {/* Right Column: Grid Categories */}
-        <div className="md:w-2/3 flex flex-col gap-12">
+        <div className="md:w-2/3 flex flex-col gap-12" role="list">
           {categories.map((category) => (
-            <div key={category.name} className="flex flex-col gap-6">
+            <div key={category.name} className="flex flex-col gap-6" role="listitem">
               <h3 className="text-xs font-bold uppercase tracking-widest text-black">
                 {category.name}
               </h3>
@@ -88,8 +88,9 @@ const Technologies = () => {
                   >
                     <img 
                       src={icon.url} 
-                      alt={icon.name} 
+                      alt={`${icon.name} technology icon`} 
                       className="w-10 h-10 object-contain mb-2"
+                      loading="lazy"
                     />
                     <span className="text-[8px] font-bold uppercase text-black/40 text-center opacity-0 group-hover:opacity-100 transition-opacity">
                       {icon.name}

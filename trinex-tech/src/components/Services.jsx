@@ -20,70 +20,66 @@ const Services = () => {
   const services = [
     {
       id: '01',
-      title: 'Website Development',
-      description: 'We build modern, responsive, and high-performance websites designed for scalability and user experience.',
-      longDescription: 'Our website development service focuses on creating high-end digital experiences that are not only visually stunning but also technically superior. We use the latest technologies like React, Next.js, and advanced CSS to ensure your site is fast, SEO-friendly, and highly interactive. From landing pages to complex corporate portals, we deliver excellence at every pixel.',
+      title: 'Full-Stack Web Development',
+      description: 'We build modern, responsive, and high-performance websites using React, Next.js, and Node.js.',
+      longDescription: 'Our website development service focuses on creating high-end digital experiences that are not only visually stunning but also technically superior. We prioritize speed, SEO-ready architectures, and scalable cloud hosting to ensure your business stays ahead.',
       icon: <Globe size={32} />
     },
     {
       id: '02',
-      title: 'Application Deployment',
-      description: 'We ensure smooth, secure, and efficient deployment of applications across production environments.',
-      longDescription: 'Deployment is more than just pushing code. We provide robust CI/CD pipelines, cloud infrastructure management (AWS, Azure, Vercel), and automated scaling solutions. Our goal is to ensure your application is always available, secure, and performing at its peak under any load.',
+      title: 'Mobile App Development',
+      description: 'Expert iOS and Android app development using React Native and Flutter for seamless user experiences.',
+      longDescription: 'From initial wireframing to App Store and Google Play deployment, we build high-performance mobile applications. We focus on native-like performance, secure backend integration, and intuitive UI/UX design.',
       icon: <Rocket size={32} />
     },
     {
       id: '03',
-      title: 'Turnkey Solutions',
-      description: 'We deliver complete end-to-end software solutions — from concept to deployment — ready for immediate use.',
-      longDescription: 'Our turnkey solutions are designed for businesses that need a complete product without the hassle of managing multiple vendors. We handle everything from initial strategy and UI/UX design to backend development, testing, and final rollout. You get a market-ready product that aligns perfectly with your business objectives.',
+      title: 'Digital Marketing & SEO',
+      description: 'Data-driven SEO services, PPC management, and social media marketing to scale your online presence.',
+      longDescription: 'Our digital marketing strategies are built on data. We provide comprehensive SEO audits, GEO (AI search optimization), and result-oriented content marketing to drive organic growth and maximize ROI.',
       icon: <Layers size={32} />
     },
     {
-       id: '04',
-       title: 'Additional Expertise',
-       description: 'Backend Engineering, API Development, Cloud Integration, and Performance Optimization.',
-       longDescription: 'Beyond our core services, we offer specialized expertise in building robust backend architectures, designing secure REST/GraphQL APIs, and integrating complex cloud services. We also focus heavily on performance optimization to ensure your digital assets are running as efficiently as possible.',
-       icon: <Brain size={32} />
+      id: '04',
+      title: 'Custom Software Engineering',
+      description: 'Bespoke software solutions including ERP, CRM, and API development for complex business needs.',
+      longDescription: 'We solve complex business problems with custom-engineered software. Our expertise includes building robust microservices, secure API landscapes, and cloud-native applications that scale with your enterprise.',
+      icon: <Brain size={32} />
     }
   ];
 
   return (
-    <section id="services" className="py-12">
+    <section id="services" className="py-12" aria-labelledby="services-heading">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 p-12">
         <div className="mb-16">
-           <h2 className="text-4xl font-black uppercase tracking-tight">What We Do</h2>
+           <h2 id="services-heading" className="text-4xl font-black uppercase tracking-tight">Expert IT Services</h2>
            <p className="text-secondary mt-4 max-w-lg">
-             Our expertise spans across the entire software development lifecycle, ensuring excellence at every stage.
+             Our expertise spans the entire digital lifecycle, ensuring <strong className="text-black">performance-driven results</strong> at every stage.
            </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
           {services.map((service, index) => (
-            <motion.div
+            <article
               key={service.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
               className="p-10 flex flex-col gap-8 group hover:bg-black transition-all duration-500 hover:text-white cursor-pointer"
               onClick={() => setSelectedService(service)}
             >
               <div className="flex justify-between items-start">
-                 <div className="text-black group-hover:text-white transition-colors duration-500">
+                 <div className="text-black group-hover:text-white transition-colors duration-500" aria-hidden="true">
                    {service.icon}
                  </div>
                  <span className="text-xs font-mono text-secondary group-hover:text-white/50">{service.id}</span>
               </div>
               
-              <div>
+              <header>
                 <h3 className="text-xl font-bold mb-4 tracking-tight leading-none group-hover:text-white">
                   {service.title}
                 </h3>
                 <p className="text-sm text-secondary leading-relaxed group-hover:text-white/70 transition-colors">
                   {service.description}
                 </p>
-              </div>
+              </header>
 
               <div className="mt-auto pt-4 border-t border-border group-hover:border-white/20">
                  <button 
@@ -92,15 +88,17 @@ const Services = () => {
                     setSelectedService(service);
                   }}
                   className="text-[10px] font-black tracking-widest uppercase flex items-center gap-2 group-hover:text-white transition-colors"
+                  aria-label={`Learn more about ${service.title}`}
                  >
                     LEARN MORE
                     <div className="w-4 h-[1px] bg-black group-hover:bg-white"></div>
                  </button>
               </div>
-            </motion.div>
+            </article>
           ))}
         </div>
       </div>
+
 
       {/* Service Modal */}
       <AnimatePresence>
