@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Globe, Rocket, Layers, Brain, X, ArrowRight } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Globe, Rocket, Layers, Brain, X, ArrowRight, Zap } from 'lucide-react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState(null);
+  const { scrollYProgress } = useScroll();
+  
+  // Parallel Axis: Skew and rotate based on scroll
+  const skew = useTransform(scrollYProgress, [0.2, 0.5], [0, -5]);
+  const opacity = useTransform(scrollYProgress, [0.2, 0.3], [0, 1]);
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -20,49 +25,63 @@ const Services = () => {
   const services = [
     {
       id: '01',
-      title: 'Full-Stack Web Development',
-      description: 'We build modern, responsive, and high-performance websites using React, Next.js, and Node.js.',
-      longDescription: 'Our website development service focuses on creating high-end digital experiences that are not only visually stunning but also technically superior. We prioritize speed, SEO-ready architectures, and scalable cloud hosting to ensure your business stays ahead.',
+      title: 'Global Growth Platforms',
+      description: 'Your local shop, now open to 8 billion people. High-performance growth architectures.',
+      longDescription: 'A website is your 24/7 salesperson. We build platforms that don’t just look good but are engineered to convert visitors into lifelong customers through psychological design and technical speed.',
       icon: <Globe size={32} />
     },
     {
       id: '02',
-      title: 'Mobile App Development',
-      description: 'Expert iOS and Android app development using React Native and Flutter for seamless user experiences.',
-      longDescription: 'From initial wireframing to App Store and Google Play deployment, we build high-performance mobile applications. We focus on native-like performance, secure backend integration, and intuitive UI/UX design.',
+      title: 'Mobile Reach Systems',
+      description: 'Being in your customer’s pocket is the ultimate expansion strategy. iOS & Android experts.',
+      longDescription: 'We develop mobile applications that feel native, fast, and indispensable. Our focus is on retention—keeping your brand top-of-mind every time your customer picks up their phone.',
       icon: <Rocket size={32} />
     },
     {
       id: '03',
-      title: 'Digital Marketing & SEO',
-      description: 'Data-driven SEO services, PPC management, and social media marketing to scale your online presence.',
-      longDescription: 'Our digital marketing strategies are built on data. We provide comprehensive SEO audits, GEO (AI search optimization), and result-oriented content marketing to drive organic growth and maximize ROI.',
+      title: 'Search Engine Dominance',
+      description: 'Be the first answer to your customer’s questions. SEO and AI-Search optimization.',
+      longDescription: 'Visibility is oxygen for business. We use data-driven SEO and the latest AI-search strategies (GEO) to ensure that when your potential clients search, you are the only one they see.',
       icon: <Layers size={32} />
     },
     {
       id: '04',
-      title: 'Custom Software Engineering',
-      description: 'Bespoke software solutions including ERP, CRM, and API development for complex business needs.',
-      longDescription: 'We solve complex business problems with custom-engineered software. Our expertise includes building robust microservices, secure API landscapes, and cloud-native applications that scale with your enterprise.',
+      title: 'Operational Automation',
+      description: 'Software that works while you sleep. Custom ERP, CRM, and automated workflows.',
+      longDescription: 'As you grow, your operations must scale. We build custom software that automates the boring stuff, freeing you to focus on the big-picture vision of your expanding empire.',
       icon: <Brain size={32} />
     }
   ];
 
   return (
-    <section id="services" className="py-12" aria-labelledby="services-heading">
+    <section id="services" className="py-24 relative" aria-labelledby="services-heading">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 p-12">
-        <div className="mb-16">
-           <h2 id="services-heading" className="text-4xl font-black uppercase tracking-tight">Expert IT Services</h2>
-           <p className="text-secondary mt-4 max-w-lg">
-             Our expertise spans the entire digital lifecycle, ensuring <strong className="text-black">performance-driven results</strong> at every stage.
+        <motion.div 
+          style={{ opacity }}
+          className="mb-24 flex flex-col md:flex-row justify-between items-end gap-8"
+        >
+           <div className="md:w-1/2">
+             <div className="flex items-center gap-2 text-xs font-black tracking-widest text-black/40 uppercase mb-4">
+               <Zap size={14} />
+               <span>Phase 4: Getting Started</span>
+             </div>
+             <h2 id="services-heading" className="text-4xl lg:text-7xl font-black uppercase tracking-tight leading-none">The Path <br/> To Success</h2>
+           </div>
+           <p className="md:w-1/3 text-secondary text-lg leading-relaxed border-l border-black/10 pl-8">
+             We provide the technical <strong className="text-black">tools</strong> and the plan you need to grow your business anywhere in the world.
            </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-black/5">
           {services.map((service, index) => (
-            <article
+            <motion.article
               key={service.id}
-              className="p-10 flex flex-col gap-8 group hover:bg-black transition-all duration-500 hover:text-white cursor-pointer"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              style={{ skewY: skew }}
+              className="p-10 flex flex-col gap-8 group hover:bg-black transition-all duration-500 hover:text-white cursor-pointer border-r border-b border-black/5"
               onClick={() => setSelectedService(service)}
             >
               <div className="flex justify-between items-start">
@@ -90,11 +109,13 @@ const Services = () => {
                   className="text-[10px] font-black tracking-widest uppercase flex items-center gap-2 group-hover:text-white transition-colors"
                   aria-label={`Learn more about ${service.title}`}
                  >
-                    LEARN MORE
+                    SEE HOW
+
                     <div className="w-4 h-[1px] bg-black group-hover:bg-white"></div>
                  </button>
+
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
       </div>
@@ -112,7 +133,7 @@ const Services = () => {
             {/* Floating Close Button */}
             <button 
               onClick={() => setSelectedService(null)}
-              className="fixed top-24 right-8 w-14 h-14 bg-black text-white flex items-center justify-center rounded-full hover:scale-110 transition-all z-[10000]"
+              className="fixed top-12 right-8 w-14 h-14 bg-black text-white flex items-center justify-center rounded-full hover:scale-110 transition-all z-[10000]"
               aria-label="Close"
             >
               <X size={28} />
@@ -124,7 +145,7 @@ const Services = () => {
                 <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
                   <div>
                     <span className="text-xs font-mono text-black/40 mb-4 block">{selectedService.id}</span>
-                    <h2 className="text-6xl lg:text-8xl font-black uppercase tracking-tighter mb-6">{selectedService.title}</h2>
+                    <h2 className="text-6xl lg:text-9xl font-black uppercase tracking-tighter mb-6 underline decoration-black/5 underline-offset-8">{selectedService.title}</h2>
                   </div>
                   <div className="p-8 bg-black text-white rounded-full w-24 h-24 flex items-center justify-center mb-8 md:mb-0">
                     {React.cloneElement(selectedService.icon, { size: 48 })}
@@ -133,24 +154,24 @@ const Services = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32">
                   <div className="flex flex-col gap-8">
-                    <p className="text-2xl lg:text-3xl font-bold leading-tight text-foreground">
-                      {selectedService.description}
+                    <p className="text-2xl lg:text-4xl font-bold leading-tight text-foreground">
+                      {service.description}
                     </p>
-                    <div className="w-12 h-1 bg-black"></div>
+                    <div className="w-24 h-2 bg-black"></div>
                   </div>
                   
                   <div className="flex flex-col gap-12">
-                    <p className="text-lg text-secondary leading-relaxed font-medium">
+                    <p className="text-xl text-secondary leading-relaxed font-medium">
                       {selectedService.longDescription}
                     </p>
                     
                     <a 
                       href="#contact" 
                       onClick={() => setSelectedService(null)}
-                      className="btn-primary group flex items-center gap-2 transition-all w-fit"
+                      className="btn-primary group flex items-center gap-3 transition-all w-fit px-12 py-6 text-lg"
                     >
-                      GET STARTED
-                      <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                      BEGIN EXPANSION
+                      <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                     </a>
                   </div>
                 </div>
