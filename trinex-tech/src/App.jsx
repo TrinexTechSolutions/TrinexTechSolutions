@@ -15,7 +15,6 @@ import FAQ from './components/FAQ';
 import Schema from './components/Schema';
 import Footer from './components/Footer';
 import NarrativeBridge from './components/NarrativeBridge';
-import TheTransformation from './components/TheTransformation';
 import TheProblemSolution from './components/TheProblemSolution';
 import Team from './pages/Team';
 import { motion, useScroll } from 'framer-motion';
@@ -48,7 +47,6 @@ const Home = () => {
         <ValueStatement />
         <NarrativeBridge />
         <TheProblemSolution />
-        <TheTransformation />
         <section id="services-section">
           <Services />
         </section>
