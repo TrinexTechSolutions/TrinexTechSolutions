@@ -1,148 +1,179 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, MoveRight, Plus, Minus } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, ArrowUpRight, Globe, Zap, Sparkles, GraduationCap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
+// Local Image Imports
+import syamImg from '../assets/our-team-images/syam-trinex.png';
+import pradeepImg from '../assets/our-team-images/pradeep-trinex.png';
+import ashokImg from '../assets/our-team-images/ashok-trinex.png';
+
 const Team = () => {
-  const [activeId, setActiveId] = useState(0);
+  const { scrollY } = useScroll();
+  
+  // PARALLAX FOR THE HEADER
+  const yHeader = useTransform(scrollY, [0, 600], [0, 300]);
 
   const founders = [
     {
-      id: 0,
+      id: "01",
       name: "Panga Syamsundar Rao",
-      role: "CEO",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1200",
-      bio: "Visionary leader with a passion for digital business transformation. Building bridges to the global stage.",
-      expertise: ["Strategy", "Growth", "Vision"]
+      role: "Chief Executive Officer",
+      image: syamImg,
+      description: "A focused graduate professional and strategic partner. Dedicated to the multi-disciplinary execution of the Trinex vision, ensuring every project is handled with shared responsibility and technical precision."
     },
     {
-      id: 1,
+      id: "02",
       name: "Alluri Pradeep Varma",
-      role: "CTO",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=1200",
-      bio: "Technical mastermind specialized in high-performance engineering. Crafting the engines of the digital age.",
-      expertise: ["Engineering", "Architecture", "AI"]
+      role: "Chief Technology Officer",
+      image: pradeepImg,
+      description: "A committed graduate professional driving excellence across all facets of Trinex. Focused on the collective engineering of digital solutions, where every task is met with equal dedication and professional rigor."
     },
     {
-      id: 2,
+      id: "03",
       name: "Patcha Ashok Chakravarti",
-      role: "COO",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=1200",
-      bio: "Operations expert focused on seamless delivery. Ensuring precision in every blueprint we execute.",
-      expertise: ["Operations", "Scale", "Precision"]
+      role: "Chief Operating Officer",
+      image: ashokImg,
+      description: "A graduate professional specialized in the seamless delivery of the Trinex mission. Working as an equal partner to ensure that every operational and technical blueprint is executed with absolute unity."
     }
   ];
 
   return (
-    <main className="bg-white min-h-screen text-black overflow-x-hidden">
-      {/* HUD-STYLE FLOATING NAV (Ensures Clickability) */}
-      <div className="fixed top-24 left-6 lg:left-12 z-[110] flex items-center gap-6">
-        <Link 
-          to="/" 
-          className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-2xl group"
-        >
-          <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
-        </Link>
-        <div className="hidden lg:flex flex-col gap-0.5">
-          <span className="text-[9px] font-black uppercase tracking-[0.6em] text-black/40">The Architects</span>
-          <div className="w-8 h-[1px] bg-black/10"></div>
-        </div>
-      </div>
-
+    <main className="bg-white min-h-screen text-black overflow-x-hidden selection:bg-black selection:text-white relative">
       <Navbar />
-      
-      {/* THE GALLERY: PURE FULL-SCREEN INTERACTION */}
-      <section className="h-screen flex flex-col pt-0 overflow-hidden">
-        <div className="flex-1 flex flex-col lg:flex-row h-full">
-          {founders.map((founder) => (
-            <motion.div 
-              key={founder.id}
-              onMouseEnter={() => setActiveId(founder.id)}
-              onClick={() => setActiveId(founder.id)}
-              className={`relative flex-1 group cursor-pointer overflow-hidden transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${
-                activeId === founder.id ? 'lg:flex-[3]' : 'lg:flex-[1]'
-              }`}
-            >
-              {/* Image Layer */}
-              <motion.div 
-                className={`absolute inset-0 bg-black transition-all duration-1000 ${
-                  activeId === founder.id ? 'grayscale-0' : 'grayscale'
-                }`}
-              >
-                <img 
-                  src={founder.image} 
-                  alt={founder.name} 
-                  className={`w-full h-full object-cover transition-transform duration-[1500ms] ${
-                    activeId === founder.id ? 'scale-100 opacity-90' : 'scale-110 opacity-30'
-                  }`}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
-              </motion.div>
 
-              {/* Text Layer */}
-              <div className="absolute inset-0 p-8 lg:p-20 flex flex-col justify-end">
-                <div className="flex flex-col gap-6">
-                  {/* High-Impact Name */}
-                  <h3 className="text-4xl lg:text-7xl font-black uppercase tracking-tighter text-white leading-[0.85]">
-                    {founder.name.split(' ').map((word, i) => (
-                      <span key={i} className="block">{word}</span>
-                    ))}
-                  </h3>
+      {/* HEADER SECTION (CLEAN CINEMATIC BACKGROUND) */}
+      <motion.section 
+        style={{ y: yHeader, transform: "translateZ(0)" }}
+        className="relative pt-24 pb-12 px-6 lg:px-12 z-10 will-change-transform overflow-hidden"
+      >
+        {/* CINEMATIC ELEMENTS FOR HEADING BACKGROUND */}
+        <div className="absolute inset-0 z-0 opacity-[0.05]">
+           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] aspect-square rounded-full bg-[radial-gradient(circle,rgba(0,0,0,1)_0%,transparent_70%)] blur-3xl"></div>
+        </div>
+        <div className="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-black/[0.02] to-transparent pointer-events-none"></div>
 
-                  {/* Bio Reveal (Only for Active slot) */}
-                  <AnimatePresence>
-                    {activeId === founder.id && (
-                      <motion.div 
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 30 }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="max-w-md flex flex-col gap-8 pb-4"
-                      >
-                         <div className="w-12 h-1 bg-white"></div>
-                         <p className="text-xl text-white italic leading-relaxed font-sans">
-                           "{founder.bio}"
-                         </p>
-                         <div className="flex flex-wrap gap-4">
-                           {founder.expertise.map(skill => (
-                             <span key={skill} className="text-[10px] font-black uppercase tracking-[0.3em] px-4 py-1.5 bg-white/10 backdrop-blur-md rounded-full text-white/60">
-                               {skill}
-                             </span>
-                           ))}
-                         </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </div>
+        <div className="max-w-7xl mx-auto flex flex-col items-start gap-12 relative z-10">
+          <Link to="/" className="flex items-center gap-4 text-[10px] font-bold tracking-[0.4em] uppercase text-black/40 hover:text-black transition-colors group">
+            <ArrowLeft size={14} className="group-hover:-translate-x-2 transition-transform" />
+            Back to Home
+          </Link>
+          
+          <div className="flex flex-col">
+             <span className="text-xs font-black uppercase tracking-[0.8em] text-black/10 mb-4 ml-2">Legacy Engineering</span>
+             <h1 className="text-[clamp(2.5rem,8vw,7.5rem)] font-black uppercase tracking-tighter leading-none mb-4 whitespace-nowrap">
+                Meet the <span className="italic font-light text-black/10 lowercase">Team.</span>
+             </h1>
+          </div>
 
-              {/* Mobile Indicator */}
-              <div className="absolute top-8 right-8 lg:hidden">
-                {activeId === founder.id ? <Minus className="text-white" size={32} /> : <Plus className="text-white" size={32} />}
-              </div>
-            </motion.div>
+          <div className="w-full flex justify-end">
+             <div className="max-w-md flex flex-col gap-6 items-end">
+                <div className="w-12 h-px bg-black/20"></div>
+                <p className="text-xl text-black/60 font-medium leading-relaxed text-right">
+                   Equality in vision. Unity in execution. Bridging the gap between graduation and global scale.
+                </p>
+             </div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* THE TEAM LIST (GRID BACKGROUND RESTORED HERE) */}
+      <section className="relative z-20 pb-40 bg-white shadow-[0_-50px_100px_rgba(255,255,255,1)]">
+        {/* BLUEPRINT GRID ONLY FOR THE TEAM SECTION */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.04] z-0">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 space-y-40 lg:space-y-64 relative z-10 pt-20">
+          {founders.map((founder, index) => (
+             <TeamMemberCard key={founder.id} founder={founder} index={index} />
           ))}
         </div>
       </section>
 
-      {/* FOOTER CTA SECTION */}
-      <section className="bg-black text-white py-32 px-6 lg:px-12">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-16">
-          <div className="flex flex-col gap-6">
-            <h1 className="text-6xl lg:text-9xl font-black uppercase tracking-tighter leading-none italic opacity-20">ASSEMBLE.</h1>
-            <h2 className="text-4xl lg:text-7xl font-black uppercase tracking-tighter leading-none -mt-16">Let's Build.</h2>
-          </div>
-          <Link to="/#contact" className="group flex items-center gap-8 text-2xl font-black uppercase tracking-[0.2em] hover:scale-105 transition-all">
-             Start <MoveRight size={48} className="translate-y-1" />
-          </Link>
-        </div>
+      {/* FINAL STATEMENT */}
+      <section className="bg-black text-white py-40 relative overflow-hidden z-20">
+         <div className="absolute inset-x-0 bottom-0 text-[30vw] font-black opacity-[0.03] select-none leading-none -mb-20">
+            TRINEX
+         </div>
+         <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 flex flex-col items-center text-center gap-12">
+            <h2 className="text-5xl lg:text-8xl font-black uppercase tracking-tighter max-w-4xl">
+               Ready to Build Your <span className="text-white/40 italic font-light lowercase">Legacy?</span>
+            </h2>
+            <Link 
+              to="/#contact" 
+              className="px-12 py-6 border border-white/20 hover:bg-white hover:text-black transition-all duration-500 flex items-center gap-6 group"
+            >
+               <span className="text-xs font-bold tracking-[0.4em] uppercase">Initialize Project</span>
+               <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </Link>
+         </div>
       </section>
 
       <Footer />
     </main>
   );
 };
+
+const TeamMemberCard = ({ founder, index }) => {
+  const cardRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"]
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
+  return (
+    <motion.div 
+      ref={cardRef}
+      style={{ opacity, transform: "translateZ(0)" }}
+      className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-24`}
+    >
+      {/* LARGE NUMBER & IMAGE */}
+      <div className="relative flex-1 group max-w-md">
+         <div className="overflow-hidden relative aspect-[4/5] lg:aspect-[3/4] shadow-2xl bg-black">
+            <motion.div 
+              style={{ transform: "translateZ(0)" }} 
+              className="w-full h-full grayscale hover:grayscale-0 transition-all duration-[1500ms] ease-out"
+            >
+              <img 
+                src={founder.image} 
+                className="w-full h-full object-cover" 
+                alt={founder.name}
+              />
+            </motion.div>
+            
+            {/* Technical Mask Overlays */}
+            <div className="absolute inset-0 border-[20px] border-white/10 group-hover:border-white/0 transition-all duration-700"></div>
+            <div className="absolute top-0 right-0 w-24 h-24 border-r border-t border-black/10"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 border-l border-b border-black/10"></div>
+         </div>
+      </div>
+
+      {/* CONTENT DETAILS */}
+      <div className="flex-1 flex flex-col gap-10">
+         <div className="flex flex-col gap-4">
+            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-black/40">Founding Partner</span>
+            <h3 className="text-4xl lg:text-7xl font-black uppercase tracking-tighter leading-none">{founder.name}</h3>
+         </div>
+
+         <div className="flex flex-col gap-8">
+            <div className="h-px w-full bg-black/5"></div>
+            <p className="text-xl text-black/60 font-medium leading-relaxed italic">
+              "{founder.description}"
+            </p>
+            <div className="flex items-center gap-4 text-black/20">
+               <GraduationCap size={24} />
+               <span className="text-[10px] font-black uppercase tracking-[0.3em]">Graduate Professional</span>
+            </div>
+         </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export default Team;

@@ -35,7 +35,7 @@ const Navbar = () => {
     { name: 'Vision', href: '#about', isExternal: false },
     { name: 'Strategy', href: '#barrier', isExternal: false },
     { name: 'Solutions', href: '#solutions', isExternal: false },
-    { name: 'Architects', href: '/team', isExternal: true },
+    { name: 'Team', href: '/team', isExternal: true },
     { name: 'Services', href: '#services', isExternal: false },
     { name: 'Portfolio', href: '#portfolio', isExternal: false },
   ];
@@ -47,7 +47,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`left-0 right-0 z-[100] transition-all duration-700 ${isScrolled
+      className={`left-0 right-0 z-[100] transition-all duration-700 ${isScrolled || !isHome
         ? 'fixed top-0 bg-white/95 backdrop-blur-md py-4 shadow-sm translate-y-0 opacity-100'
         : 'absolute top-0 bg-transparent py-6 -translate-y-2 md:translate-y-0 opacity-100'
         }`}
@@ -71,7 +71,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.href}
-                className={`relative text-xs font-black uppercase tracking-widest transition-colors duration-300 ${location.pathname === link.href ? sectionTheme : `${sectionThemeMuted} hover:${sectionTheme}`
+                className={`relative text-xs font-black uppercase tracking-widest transition-colors duration-300 whitespace-nowrap ${location.pathname === link.href ? sectionTheme : `${sectionThemeMuted} hover:${sectionTheme}`
                   }`}
               >
                 {link.name}
@@ -88,7 +88,7 @@ const Navbar = () => {
                 key={link.name}
                 href={location.pathname === '/' ? link.href : `/${link.href}`}
                 onClick={() => setActiveSection(link.href)}
-                className={`relative text-xs font-black uppercase tracking-widest transition-colors duration-300 ${activeSection === link.href ? sectionTheme : `${sectionThemeMuted} hover:${sectionTheme}`
+                className={`relative text-xs font-black uppercase tracking-widest transition-colors duration-300 whitespace-nowrap ${activeSection === link.href ? sectionTheme : `${sectionThemeMuted} hover:${sectionTheme}`
                   }`}
               >
                 {link.name}
