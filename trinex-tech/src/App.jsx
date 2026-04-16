@@ -16,6 +16,7 @@ import Schema from './components/Schema';
 import Footer from './components/Footer';
 import NarrativeBridge from './components/NarrativeBridge';
 import TheProblemSolution from './components/TheProblemSolution';
+import TransitionWaves from './components/TransitionWaves';
 import Team from './pages/Team';
 import { motion, useScroll } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
@@ -47,6 +48,7 @@ const Home = () => {
         <ValueStatement />
         <NarrativeBridge />
         <TheProblemSolution />
+        <TransitionWaves />
         <section id="services-section">
           <Services />
         </section>

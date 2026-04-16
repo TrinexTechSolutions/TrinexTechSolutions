@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Globe, Rocket, Layers, Brain, X, ArrowRight, Zap } from 'lucide-react';
+import { Globe, Rocket, Layers, Brain, X, ArrowRight, Palette, Cpu, Server, Mail } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 
 const Services = () => {
@@ -8,7 +8,6 @@ const Services = () => {
   
   // Parallel Axis: Skew and rotate based on scroll
   const skew = useTransform(scrollYProgress, [0.2, 0.5], [0, -5]);
-  const opacity = useTransform(scrollYProgress, [0.2, 0.3], [0, 1]);
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -25,31 +24,59 @@ const Services = () => {
   const services = [
     {
       id: '01',
-      title: 'Global Growth Platforms',
-      description: 'Your local shop, now open to 8 billion people. High-performance growth architectures.',
-      longDescription: 'A website is your 24/7 salesperson. We build platforms that don’t just look good but are engineered to convert visitors into lifelong customers through psychological design and technical speed.',
+      title: 'Website Design & Development',
+      description: 'Your beautiful global home. We build high-speed websites that turn visitors into customers.',
+      longDescription: 'A website is your 24/7 salesperson. We design stunning, easy-to-use platforms that don’t just look good but are engineered to grow your sales through professional design and lightning-fast speed.',
       icon: <Globe size={32} />
     },
     {
       id: '02',
-      title: 'Mobile Reach Systems',
-      description: 'Being in your customer’s pocket is the ultimate expansion strategy. iOS & Android experts.',
-      longDescription: 'We develop mobile applications that feel native, fast, and indispensable. Our focus is on retention—keeping your brand top-of-mind every time your customer picks up their phone.',
+      title: 'Mobile App Development',
+      description: 'Put your business in your customer’s hands. Fast, reliable apps for iPhones and Androids.',
+      longDescription: 'Reach your customers wherever they are. We build mobile applications that are fast, intuitive, and designed to keep people coming back to your brand every single day.',
       icon: <Rocket size={32} />
     },
     {
       id: '03',
-      title: 'Search Engine Dominance',
-      description: 'Be the first answer to your customer’s questions. SEO and AI-Search optimization.',
-      longDescription: 'Visibility is oxygen for business. We use data-driven SEO and the latest AI-search strategies (GEO) to ensure that when your potential clients search, you are the only one they see.',
+      title: 'SEO & Search Optimization',
+      description: 'Get found on Google. We make your business the first answer when customers search for help.',
+      longDescription: 'If people can’t find you, they can’t buy from you. We use modern SEO strategies to push your business to the top of search results, ensuring you get the visibility you deserve.',
       icon: <Layers size={32} />
     },
     {
       id: '04',
-      title: 'Operational Automation',
-      description: 'Software that works while you sleep. Custom ERP, CRM, and automated workflows.',
-      longDescription: 'As you grow, your operations must scale. We build custom software that automates the boring stuff, freeing you to focus on the big-picture vision of your expanding empire.',
+      title: 'Custom Software Development',
+      description: 'Software that solves your unique problems. Custom tools that help your business run itself.',
+      longDescription: 'Stop using generic tools that don’t fit your needs. We build custom software specifically for your business processes, saving you time and money by automating the boring stuff.',
       icon: <Brain size={32} />
+    },
+    {
+      id: '05',
+      title: 'Branding & Graphic Design',
+      description: 'Look like a industry leader. Professional logos and designs that command trust and respect.',
+      longDescription: 'Your visual identity is the first thing people see. We create unique logos and brand designs that communicate power and reliability, making sure you stand out from the competition.',
+      icon: <Palette size={32} />
+    },
+    {
+      id: '06',
+      title: 'AI & Business Automation',
+      description: 'Leverage the power of AI. Smart tools that answer customers and analyze data instantly.',
+      longDescription: 'The future is here. We integrate AI into your business to help you respond to clients faster, understand your data better, and stay years ahead of your competitors.',
+      icon: <Cpu size={32} />
+    },
+    {
+      id: '07',
+      title: 'Deployment, Hosting & Maintenance',
+      description: 'We keep your business online. Reliable hosting and continuous updates so your site never goes down.',
+      longDescription: 'Launch with confidence. We handle the technical heavy lifting of putting your project online, ensuring it stays fast, secure, and up-to-date while you focus on running your business.',
+      icon: <Server size={32} />
+    },
+    {
+      id: '08',
+      title: 'Email Marketing Services',
+      description: 'Talk directly to your customers. High-impact email campaigns that drive repeat sales.',
+      longDescription: 'Build relationships that last. We create professional email marketing systems that keep your customers engaged, informed, and always ready to buy from you again.',
+      icon: <Mail size={32} />
     }
   ];
 
@@ -57,19 +84,23 @@ const Services = () => {
     <section id="services" className="py-24 relative" aria-labelledby="services-heading">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 p-12">
         <motion.div 
-          style={{ opacity }}
-          className="mb-24 flex flex-col md:flex-row justify-between items-end gap-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16 flex flex-col md:flex-row justify-between items-end gap-12"
         >
-           <div className="md:w-1/2">
-             <div className="flex items-center gap-2 text-xs font-black tracking-widest text-black/40 uppercase mb-4">
-               <Zap size={14} />
-               <span>Phase 4: Getting Started</span>
-             </div>
-             <h2 id="services-heading" className="text-4xl lg:text-7xl font-black uppercase tracking-tight leading-none">The Path <br/> To Success</h2>
-           </div>
-           <p className="md:w-1/3 text-secondary text-lg leading-relaxed border-l border-black/10 pl-8">
-             We provide the technical <strong className="text-black">tools</strong> and the plan you need to grow your business anywhere in the world.
-           </p>
+          <div className="max-w-2xl">
+            <span className="text-[10px] font-bold tracking-widest text-black/30 mb-6 block px-1">Ready for Expansion?</span>
+            <h2 className="text-4xl lg:text-7xl font-bold tracking-tight leading-tight text-balance">
+              Building Your <br />
+              Digital Empire.
+            </h2>
+          </div>
+          <div className="md:w-1/3 border-l border-black/10 pl-8 py-2">
+            <p className="text-lg text-secondary font-medium leading-relaxed italic">
+              "We don't just write code. Our services build the <strong className="text-black font-bold">global bridge</strong> between where you are and where you want to be."
+            </p>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-black/5">
@@ -106,10 +137,10 @@ const Services = () => {
                     e.stopPropagation();
                     setSelectedService(service);
                   }}
-                  className="text-[10px] font-black tracking-widest uppercase flex items-center gap-2 group-hover:text-white transition-colors"
+                  className="text-[11px] font-bold tracking-widest flex items-center gap-2 group-hover:text-white transition-colors"
                   aria-label={`Learn more about ${service.title}`}
                  >
-                    SEE HOW
+                    See how
 
                     <div className="w-4 h-[1px] bg-black group-hover:bg-white"></div>
                  </button>
@@ -155,7 +186,7 @@ const Services = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32">
                   <div className="flex flex-col gap-8">
                     <p className="text-2xl lg:text-4xl font-bold leading-tight text-foreground">
-                      {service.description}
+                      {selectedService.description}
                     </p>
                     <div className="w-24 h-2 bg-black"></div>
                   </div>
