@@ -1,91 +1,120 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Globe, TrendingUp, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, Globe, Zap } from 'lucide-react';
 
 const Hero = () => {
-  const { scrollY } = useScroll();
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  // Immediate Reveal Logic
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const yText = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const yImage = useTransform(scrollYProgress, [0, 1], [0, -250]);
   
-  // Parallel Axis Effects: Background symbols move at different speeds
-  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-  const y2 = useTransform(scrollY, [0, 500], [0, -150]);
-  const rotate = useTransform(scrollY, [0, 500], [0, 45]);
+  // Early Diagonal Cut Animation (Starts after slight scroll)
+  const cutY = useTransform(scrollYProgress, [0.3, 0.95], ["100%", "0%"]);
 
   return (
-    <section id="hero" className="min-h-screen pt-32 pb-12 overflow-hidden relative flex items-center">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10 w-full">
-        <motion.div
-           initial={{ opacity: 0, x: -30 }}
-           animate={{ opacity: 1, x: 0 }}
-           transition={{ duration: 0.8, ease: "easeOut" }}
-           className="flex flex-col gap-8"
+    <section 
+      ref={containerRef} 
+      className="relative h-[200vh] bg-black"
+    >
+      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+        
+        {/* BACKGROUND LAYER: Optimized Architectural Minimalist Canvas */}
+        <motion.div 
+          style={{ opacity, transform: "translateZ(0)" }}
+          className="absolute inset-0 z-0"
         >
-          <div className="flex items-center gap-2 text-xs font-black tracking-widest text-black/40 uppercase">
-            <Sparkles size={14} />
-            <span>Your Vision, Globally Visible</span>
-          </div>
-
-          <header>
-            <h1 className="text-5xl lg:text-7xl font-black leading-[1.05] text-foreground text-balance">
-              Stop Being <span className="text-secondary opacity-30">Invisible.</span> Start Being <span className="underline decoration-black/10 underline-offset-8">Iconic.</span>
-            </h1>
-          </header>
-
-          <p className="text-xl text-secondary leading-relaxed max-w-lg font-medium">
-            You’ve built a great business. Now, let’s build its <span className="text-black font-bold">global home</span>. We translate your passion into a digital experience that works 24/7 to find your next customer.
-          </p>
-
-          <nav className="flex flex-wrap gap-6 mt-4" aria-label="Hero Actions">
-            <a href="#contact" className="btn-primary group flex items-center gap-3 px-10">
-              GROW MY BUSINESS
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a href="#portfolio" className="btn-secondary flex items-center gap-2">
-              SEE THE TRANSFORMATION
-            </a>
-          </nav>
-
-          <div className="mt-8 flex items-center gap-8 border-t border-border pt-8">
-            <div className="flex flex-col">
-              <span className="text-2xl font-black">24/7</span>
-              <span className="text-[10px] uppercase tracking-wider text-secondary">Global Exposure</span>
-            </div>
-            <div className="w-px h-8 bg-border"></div>
-            <div className="flex flex-col">
-              <span className="text-2xl font-black">100%</span>
-              <span className="text-[10px] uppercase tracking-wider text-secondary">Scalable Identity</span>
-            </div>
-          </div>
+          <img 
+            src="/Hero_Minimalist.png" 
+            className="w-full h-full object-cover opacity-20"
+            alt="Minimalist Architecture"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
         </motion.div>
 
-        <motion.div
-           initial={{ opacity: 0, scale: 0.9 }}
-           animate={{ opacity: 1, scale: 1 }}
-           transition={{ duration: 1, delay: 0.2 }}
-           className="relative hidden lg:flex justify-center items-center"
+        {/* MIDDLE LAYER: Optimized Globe (Simplified Rendering) */}
+        <motion.div 
+          style={{ 
+            opacity: useTransform(scrollYProgress, [0, 0.4], [0.8, 0]),
+            y: yImage,
+            transform: "translateZ(0)"
+          }}
+          className="absolute pointer-events-none z-10 w-full max-w-md aspect-square rounded-full overflow-hidden flex items-center justify-center"
         >
-          {/* Artistic Frame for Image */}
-          <div className="relative w-full aspect-square max-w-xl">
-            <div className="absolute inset-0 bg-black/5 skewed-container -z-10"></div>
-            <motion.div 
-              animate={{ 
-                y: [0, -20, 0],
-              }}
-              transition={{ 
-                duration: 6, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-              }}
-              className="w-full h-full p-8"
-            >
-              <img
-                 src="/HeroImg.png"
-                 alt="Digital business transformation journey"
-                 className="w-full h-full object-contain filter drop-shadow-2xl"
-                 loading="eager"
-              />
-            </motion.div>
-          </div>
+          <img 
+            src="/Hero_Globe_Clean.png" 
+            className="w-full h-full object-cover animate-spin-slow scale-110 opacity-30"
+            alt="Global Connectivity"
+          />
         </motion.div>
+
+        {/* TOP LAYER: Unique Asymmetric Content Grid */}
+        <div className="relative z-20 container mx-auto px-6 h-full flex items-center justify-center">
+          
+          <motion.div 
+            style={{ y: yText, opacity, transform: "translateZ(0)" }}
+            className="w-full h-full flex flex-col justify-between py-6 md:py-8 will-change-transform"
+          >
+            {/* TOP LEFT: The Vision */}
+            <div className="flex flex-col items-start text-left max-w-2xl self-start mt-16">
+              <h1 className="text-[clamp(2.5rem,8vw,6.5rem)] font-bold tracking-tighter leading-[0.85] text-white uppercase mb-8">
+                 BUILDING <br />
+                 THE <span className="italic font-light text-[#E5AF5A]/90 lowercase">New Era.</span>
+              </h1>
+              
+              {/* Condensed Left Side Narrative */}
+              <div className="flex flex-col gap-6 max-w-md">
+                 <p className="text-sm md:text-base text-white/40 font-medium leading-relaxed italic">
+                    In a world of digital noise, standing out requires more than aesthetics—it requires a strategic alignment of brand intent and technical performance that bridges the gap between your vision and global dominance.
+                 </p>
+              </div>
+            </div>
+
+            <div className="flex flex-row items-end justify-between w-full h-full pb-8">
+              {/* BOTTOM LEFT: The Action */}
+              <div className="flex flex-col items-start gap-8 max-w-xs">
+                 <a 
+                    href="#contact" 
+                    className="group relative px-12 py-5 bg-[#E5AF5A] text-black font-bold tracking-widest text-[10px] overflow-hidden transition-all hover:scale-105"
+                  >
+                    <span className="relative z-10 uppercase">Start Your Scale</span>
+                    <div className="absolute inset-0 translate-y-full group-hover:translate-y-0 bg-white transition-transform duration-300" />
+                  </a>
+                  
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-[1px] bg-white/10" />
+                    <span className="text-[9px] font-bold text-white/20 tracking-[0.3em] uppercase">Trusted Globally</span>
+                  </div>
+              </div>
+
+              {/* BOTTOM RIGHT: The Expanded Narrative (Two Paragraphs) */}
+              <div className="flex flex-col items-end text-right max-w-2xl">
+                 <p className="text-lg md:text-xl text-white/60 font-medium leading-relaxed mb-6">
+                    We don't just build websites; we architect <span className="text-white font-bold uppercase italic">global growth engines</span>. By bridging the gap between local vision and digital dominance, we transform your brand into a scalable empire that works for you 24/7.
+                 </p>
+                 <p className="text-sm md:text-base text-white/30 font-medium leading-relaxed max-w-lg">
+                    Our process is rooted in technical excellence and strategic clarity. We identify the unique leverage points in your business and amplify them through custom architecture, high-conversion design, and global deployment. 
+                 </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* DIAGONAL WAVE CUT: Merges Hero and Below uniquely (Optimized & Taller) */}
+        <motion.div 
+          style={{ y: cutY, transform: "translateZ(0)" }}
+          className="absolute bottom-0 left-0 w-full h-[30vh] z-30 pointer-events-none will-change-transform"
+        >
+          <svg viewBox="0 0 1440 400" className="w-full h-full fill-white" preserveAspectRatio="none">
+            <path d="M0,400 L1440,400 L1440,0 C1080,300 360,-200 0,200 Z" />
+          </svg>
+        </motion.div>
+
       </div>
     </section>
   );
