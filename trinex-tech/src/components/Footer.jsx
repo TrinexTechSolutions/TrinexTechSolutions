@@ -2,9 +2,9 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="py-12 bg-black text-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 p-12">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-12">
+    <footer className="py-8 bg-black text-white overflow-hidden relative">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 py-4">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-12 mb-24">
           <div className="flex flex-col gap-6">
              <a href="#" className="flex items-center">
                 <span className="text-2xl font-black tracking-tighter uppercase text-white">Trinex Tech Solutions</span>
@@ -68,8 +68,20 @@ const Footer = () => {
              <div className="flex flex-col gap-2">
                 <p className="text-xs font-medium text-white/60">Phone: +91 85001 95791</p>
                 <p className="text-xs font-medium text-white/40">© 2026 Trinex Tech Solutions. All rights reserved.</p>
-                <p className="text-[10px] font-bold uppercase tracking-tighter text-white/10">Designed for Scalability</p>
+
              </div>
+          </div>
+        </div>
+
+        {/* MASSIVE FRONT LOGO WITH GRADIENT SHADE */}
+        <div className="mt-24 pt-12 border-t border-white/5 flex flex-col items-center">
+          <h2 className="text-[clamp(4rem,22vw,22rem)] font-black uppercase tracking-[-0.05em] leading-[0.8] mb-8 bg-gradient-to-b from-white via-white/40 to-transparent bg-clip-text text-transparent select-none">
+            TRINEX
+          </h2>
+          <div className="flex flex-col md:flex-row justify-between w-full items-center gap-4 text-white/40">
+            <p className="text-[10px] font-bold uppercase tracking-[0.5em]">Engineering the Future</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.5em]">Architects of Scale</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.5em]">Digital Dominance</p>
           </div>
         </div>
       </div>
