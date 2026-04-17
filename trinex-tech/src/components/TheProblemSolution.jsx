@@ -52,10 +52,10 @@ const Card = ({ item }) => {
         {/* Problem panel — no shadow-2xl, no blur */}
         <motion.div
           style={{ x: xLeft, willChange: 'transform' }}
-          className="w-full md:w-1/2 p-10 lg:p-16 bg-white border-l-4 border-red-500 border border-black/5"
+          className="w-full md:w-1/2 p-10 lg:p-16 bg-white border-l-4 border-[#FFC533] border border-black/5"
         >
           <div className="flex flex-col gap-6">
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-red-500/40">The Problem</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#FFC533]">The Problem</span>
             <h3 className="text-4xl lg:text-5xl font-black uppercase tracking-tight text-black/80">{item.problem}</h3>
             <p className="text-lg text-secondary font-medium leading-relaxed italic">"{item.probDesc}"</p>
           </div>
@@ -121,10 +121,10 @@ const LastCard = ({ item }) => {
           >
             <motion.div
               style={{ x: xLeft, willChange: 'transform' }}
-              className="w-full md:w-1/2 p-10 lg:p-16 bg-white border-l-4 border-red-500 border border-black/5"
+              className="w-full md:w-1/2 p-10 lg:p-16 bg-white border-l-4 border-[#FFC533] border border-black/5"
             >
               <div className="flex flex-col gap-6">
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-red-500/40">The Problem</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#FFC533]">The Problem</span>
                 <h3 className="text-4xl lg:text-5xl font-black uppercase tracking-tight text-black/80">{item.problem}</h3>
                 <p className="text-lg text-secondary font-medium leading-relaxed italic">"{item.probDesc}"</p>
               </div>
@@ -289,7 +289,7 @@ const TheProblemSolution = () => {
           <h2 className="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-[0.8]">
             <SplitWord xLeft={xLeft} xRight={xRight}>Problem</SplitWord>
             <br />
-            <span className="text-black/[0.07] decoration-black/[0.05] underline underline-offset-8 decoration-8">
+            <span className="text-[#FFC533] decoration-[#FFC533]/20 underline underline-offset-8 decoration-8">
               <SplitWord xLeft={xLeft} xRight={xRight}>To&nbsp;Success</SplitWord>
             </span>
           </h2>

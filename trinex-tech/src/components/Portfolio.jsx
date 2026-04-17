@@ -47,11 +47,11 @@ const Portfolio = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 p-12">
         <div className="mb-24 flex flex-col md:flex-row justify-between items-end">
           <header>
-            <div className="flex items-center gap-2 text-xs font-black tracking-widest text-black/40 uppercase mb-4">
+            <div className="flex items-center gap-2 text-xs font-black tracking-widest text-[#FFC533] uppercase mb-4">
                <BarChart3 size={14} />
                <span>Phase 4: Proof of Growth</span>
              </div>
-            <h2 id="portfolio-heading" className="text-4xl lg:text-7xl font-black uppercase tracking-tight">Success <br/>Stories</h2>
+            <h2 id="portfolio-heading" className="text-4xl lg:text-7xl font-black uppercase tracking-tight">Success <br/><span className="text-[#FFC533]">Stories</span></h2>
             <p className="text-secondary mt-8 max-w-lg text-lg leading-relaxed">
               We don’t just deliver projects; we deliver <strong className="text-black">market dominance</strong>. See how these businesses expanded their horizons.
             </p>

@@ -17,8 +17,8 @@ const WhyChooseUs = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
            <div>
              <header>
-               <h2 id="why-heading" className="text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none mb-8">
-                 The Trinex <br/>Advantage
+               <h2 id="why-heading" className="text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none mb-8 text-black">
+                 The Trinex <br/><span className="text-[#FFC533]">Advantage</span>
                </h2>
              </header>
              <p className="text-lg text-secondary leading-relaxed max-w-md">

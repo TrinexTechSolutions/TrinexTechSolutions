@@ -10,7 +10,7 @@ const Contact = () => {
           <div>
             <header>
               <h2 id="contact-heading" className="text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none mb-8">
-                Request a Free <br/>IT Solutions <br/>Consultation
+                Request a Free <br/>IT Solutions <br/><span className="text-[#FFC533]">Consultation</span>
               </h2>
             </header>
             <p className="text-lg text-secondary leading-relaxed max-w-md mb-12">

@@ -66,14 +66,14 @@ const About = () => {
             className="flex flex-col items-center gap-6"
           >
             <div className="flex items-center gap-3">
-              <div className="w-1.5 h-1.5 bg-black rounded-full"></div>
-              <span className="text-[10px] font-black uppercase tracking-[0.5em] text-black/40">Our Perspective</span>
-              <div className="w-1.5 h-1.5 bg-black rounded-full"></div>
+              <div className="w-1.5 h-1.5 bg-[#FFC533] rounded-full"></div>
+              <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#FFC533]">Our Perspective</span>
+              <div className="w-1.5 h-1.5 bg-[#FFC533] rounded-full"></div>
             </div>
             
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-black leading-none text-balance">
               The World Is Waiting <br /> 
-              <span className="font-light italic tracking-[0.1em] text-black/40">To Find You.</span>
+              <span className="font-light italic tracking-[0.1em] text-[#FFC533]/80">To Find You.</span>
             </h2>
           </motion.div>
 

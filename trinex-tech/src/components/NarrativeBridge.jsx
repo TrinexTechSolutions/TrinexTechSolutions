@@ -58,9 +58,9 @@ const NarrativeBridge = () => {
             <div className="flex-1 flex flex-col justify-between py-12 lg:pr-24 lg:border-r border-black/[0.03]">
                <div className="flex flex-col gap-10">
                   <div className="flex flex-col gap-2">
-                    <span className="text-[10px] font-black uppercase tracking-[0.6em] text-black/20">Problem</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.6em] text-[#FFC533]">Problem</span>
                     <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-black leading-none">
-                       The Local <br/> Limit.
+                       The <br/><span className="text-[#FFC533]">Local Limit.</span>
                     </h3>
                   </div>
                   
@@ -70,8 +70,8 @@ const NarrativeBridge = () => {
                </div>
 
                <div className="mt-12 flex items-center gap-4">
-                  <div className="w-12 h-[1px] bg-black/5"></div>
-                  <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-red-500/30">Limited Potential</span>
+                  <div className="w-12 h-[1px] bg-[#FFC533]/20"></div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#FFC533]">Limited Potential</span>
                </div>
             </div>
 
@@ -79,9 +79,9 @@ const NarrativeBridge = () => {
             <div className="flex-1 flex flex-col justify-between py-12 lg:pl-24">
                <div className="flex flex-col gap-10">
                   <div className="flex flex-col gap-2">
-                    <span className="text-[10px] font-black uppercase tracking-[0.6em] text-black/20">Our Solution</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.6em] text-[#FFC533]">Our Solution</span>
                     <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-black leading-none">
-                       Unlimited <br/> Customers.
+                       Unlimited <br/><span className="text-[#FFC533]">Customers.</span>
                     </h3>
                   </div>
                   

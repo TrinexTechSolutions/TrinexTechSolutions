@@ -35,7 +35,7 @@ const Team = () => {
       id: "03",
       name: "Ashok Chakravarti Patcha",
       image: ashokImg,
-      color: "#03E65B",
+      color: "#00D1FF",
       description: "A graduate professional specialized in the seamless delivery of the Trinex mission. Working as an equal partner to ensure that every operational and technical blueprint is executed with absolute unity."
     }
   ];

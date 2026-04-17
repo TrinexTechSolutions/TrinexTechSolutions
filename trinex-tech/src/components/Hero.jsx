@@ -64,7 +64,7 @@ const Hero = () => {
             <div className="flex flex-col items-start text-left max-w-2xl self-start mt-16">
               <h1 className="text-[clamp(2.5rem,8vw,6.5rem)] font-bold tracking-tighter leading-[0.85] text-white uppercase mb-8">
                  BUILDING <br />
-                 THE <span className="italic font-light text-[#E5AF5A]/90 lowercase">New Era.</span>
+                 THE <span className="italic font-light text-[#FFC533]/90 lowercase">New Era.</span>
               </h1>
               
               {/* Condensed Left Side Narrative */}
@@ -80,7 +80,7 @@ const Hero = () => {
               <div className="flex flex-col items-start gap-8 max-w-xs">
                  <a 
                     href="#contact" 
-                    className="group relative px-12 py-5 bg-[#E5AF5A] text-black font-bold tracking-widest text-[10px] overflow-hidden transition-all hover:scale-105"
+                    className="group relative px-12 py-5 bg-[#FFC533] text-black font-bold tracking-widest text-[10px] overflow-hidden transition-all hover:scale-105"
                   >
                     <span className="relative z-10 uppercase">Start Your Scale</span>
                     <div className="absolute inset-0 translate-y-full group-hover:translate-y-0 bg-white transition-transform duration-300" />

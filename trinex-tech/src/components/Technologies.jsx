@@ -65,7 +65,7 @@ const Technologies = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row gap-12">
         {/* Left Column: Heading */}
         <div className="md:w-1/3">
-          <h2 id="tech-heading" className="text-5xl font-black text-black mb-4">Core Stack</h2>
+          <h2 id="tech-heading" className="text-5xl font-black text-black mb-4">Core <span className="text-[#FFC533]">Stack</span></h2>
           <p className="text-[#6C757D] text-sm leading-relaxed max-w-xs">
             We leverage modern technologies to craft <strong className="text-black">innovative and future-ready solutions</strong> for our clients.
           </p>

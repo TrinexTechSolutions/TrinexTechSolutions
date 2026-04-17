@@ -90,10 +90,10 @@ const Services = () => {
           className="mb-16 flex flex-col md:flex-row justify-between items-end gap-12"
         >
           <div className="max-w-2xl">
-            <span className="text-[10px] font-bold tracking-widest text-black/30 mb-6 block px-1">Ready for Expansion?</span>
+            <span className="text-[10px] font-bold tracking-widest text-[#FFC533] mb-6 block px-1">Ready for Expansion?</span>
             <h2 className="text-4xl lg:text-7xl font-bold tracking-tight leading-tight text-balance">
               Building Your <br />
-              Digital Empire.
+              <span className="text-[#FFC533]">Digital Empire.</span>
             </h2>
           </div>
           <div className="md:w-1/3 border-l border-black/10 pl-8 py-2">

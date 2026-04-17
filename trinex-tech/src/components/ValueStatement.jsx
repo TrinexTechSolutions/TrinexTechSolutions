@@ -37,7 +37,7 @@ const ValueStatement = () => {
               className="flex items-center gap-4"
             >
                <span className="w-12 h-px bg-black/10"></span>
-               <span className="text-[10px] font-black uppercase tracking-[0.6em] text-black/30 italic">The Digital Law</span>
+               <span className="text-[10px] font-black uppercase tracking-[0.6em] text-[#FFC533] italic">The Digital Law</span>
                <span className="w-12 h-px bg-black/10"></span>
             </motion.div>
 
@@ -63,7 +63,7 @@ const ValueStatement = () => {
                  style={{ x: x3 }}
                  className="text-3xl md:text-5xl lg:text-6xl font-light uppercase tracking-[0.4em] text-black/40 leading-none whitespace-nowrap italic"
                >
-                 By Its <span className="text-black font-black not-italic tracking-tighter">Visibility.</span>
+                 By Its <span className="text-[#FFC533] font-black not-italic tracking-tighter">Visibility.</span>
                </motion.h2>
             </motion.div>
 
