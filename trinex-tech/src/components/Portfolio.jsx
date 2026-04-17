@@ -1,194 +1,190 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { ExternalLink, X, ArrowRight, BarChart3 } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { ArrowUpRight, Plus, Sparkles } from 'lucide-react';
+
+const projects = [
+  {
+    id: '01',
+    title: 'Civic Technologies',
+    description: 'Taking an industrial giant from local spreadsheets to a global digital authority.',
+    image: '/civic-techno.png',
+    link: 'https://www.civictechno.com/',
+    tags: ['Enterprise Architecture', 'B2B Digital'],
+    color: '#FFC533'
+  },
+  {
+    id: '02',
+    title: 'Dandu Interiors',
+    description: 'Turning a local design studio into a visually immersive brand recognized across borders.',
+    image: '/dandu-interior.png',
+    link: 'https://www.danduinteriors.com/',
+    tags: ['Luxury Branding', 'Creative UI'],
+    color: '#FFC533'
+  }
+];
 
 const Portfolio = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const { scrollYProgress } = useScroll();
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
-  // Parallel Axis: Images slide at a different rate than the container
-  const yImage = useTransform(scrollYProgress, [0.3, 0.7], [0, -100]);
+  // Snappier spring for better performance
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 40,
+    restDelta: 0.001
+  });
 
-  // Lock body scroll when modal is open
-  useEffect(() => {
-    if (selectedProject) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [selectedProject]);
-
-  const projects = [
-    {
-      id: '01',
-      title: 'Civic Technologies',
-      description: 'Taking an industrial giant from local spreadsheets to a global digital authority.',
-      longDescription: 'Civic Techno Services had the expertise but lacked the digital presence to compete globally. We engineered a robust platform that didn’t just list their services, but established them as regional thought leaders. The result? A 40% increase in international inquiries within the first 6 months.',
-      category: 'Global Expansion',
-      image: '/Civic2.png',
-      link: 'https://www.civictechno.com/'
-    },
-    {
-      id: '02',
-      title: 'Dandu Interiors',
-      description: 'Turning a local design studio into a visually immersive brand recognized across borders.',
-      longDescription: 'Design is visual. Dandu Interiors needed a portfolio that lived up to the quality of their physical work. We built a lightning-fast, visually immersive app that highlights their craftsmanship. Now, their digital front door is as beautiful as the homes they design.',
-      category: 'Brand Evolution',
-      image: '/Dandu2.png',
-      link: 'https://dandu-interior.vercel.app/'
-    }
-  ];
+  // Background color shift: White to warm cream/gold
+  const bgColor = useTransform(
+    smoothProgress, 
+    [0, 0.5, 1], 
+    ["#ffffff", "#ffffff", "#FFFBF0"] // Subtly warms up as you reach the second card
+  );
 
   return (
-    <section id="portfolio" className="py-24" aria-labelledby="portfolio-heading">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 p-12">
-        <div className="mb-24 flex flex-col md:flex-row justify-between items-end">
-          <header>
-            <div className="flex items-center gap-2 text-xs font-black tracking-widest text-[#FFC533] uppercase mb-4">
-               <BarChart3 size={14} />
-               <span>Phase 4: Proof of Growth</span>
-             </div>
-            <h2 id="portfolio-heading" className="text-4xl lg:text-7xl font-black uppercase tracking-tight">Success <br/><span className="text-[#FFC533]">Stories</span></h2>
-            <p className="text-secondary mt-8 max-w-lg text-lg leading-relaxed">
-              We don’t just deliver projects; we deliver <strong className="text-black">market dominance</strong>. See how these businesses expanded their horizons.
+    <motion.section 
+      ref={containerRef} 
+      id="portfolio" 
+      style={{ 
+        height: `${projects.length * 150}vh`,
+        backgroundColor: bgColor 
+      }}
+      className="relative text-black transition-colors duration-700"
+    >
+      <div className="sticky top-0 h-screen w-full flex flex-col items-start justify-start pt-16 md:pt-24 px-6 lg:px-24">
+
+        {/* Subtle Decorative Grid */}
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.015] bg-[size:60px_60px] bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)]" />
+
+        {/* Portfolio Introduction Manifesto */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 px-6">
+           <motion.div 
+             style={{ 
+               opacity: useTransform(smoothProgress, [0, 0.12], [1, 0]),
+               y: useTransform(smoothProgress, [0, 0.12], [0, -100])
+             }}
+             className="flex flex-col items-center text-center max-w-4xl"
+           >
+              <h3 className="text-[clamp(1.5rem,5vw,3rem)] font-bold italic tracking-tight leading-tight text-black/80">
+                "We don't just build pixels; we architect <span className="text-black font-black not-italic underline decoration-[#FFC533] decoration-4 underline-offset-8">Growth Engines</span> that scale."
+              </h3>
+           </motion.div>
+        </div>
+
+        {/* Repositioned Header: Small & Left */}
+        <header className="relative z-50 mb-12 flex flex-col items-start gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-[2px] bg-[#FFC533]" />
+            <span className="text-[10px] font-black uppercase tracking-widest text-black/40">Case Archives</span>
+          </div>
+          <h2 className="text-3xl md:text-6xl font-black uppercase tracking-tighter leading-none text-black">
+            OUR <span className="text-[#FFC533]">WORK.</span>
+          </h2>
+        </header>
+
+        {/* Optimized Sticky Stack */}
+        <div className="relative w-full flex-1 flex items-start justify-center">
+          {projects.map((project, index) => (
+            <ArchiveCard
+              key={project.id}
+              project={project}
+              index={index}
+              total={projects.length}
+              progress={smoothProgress}
+            />
+          ))}
+        </div>
+
+      </div>
+    </motion.section>
+  );
+};
+
+const ArchiveCard = ({ project, index, total, progress }) => {
+  // Rebalanced triggers for better friction and view-time
+  const start = index === 0 ? 0 : 0.45; // Project 2 now waits longer to surface
+  const pauseEnd = index === 0 ? 0.45 : 1.0;
+
+  const y = useTransform(progress, [start, start + 0.25], [1000, 0]);
+  const scale = useTransform(progress, [pauseEnd, pauseEnd + 0.15], [1, 0.96]);
+  const opacity = useTransform(progress, [start, start + 0.1, pauseEnd, pauseEnd + 0.1], [0, 1, 1, 0]);
+  const zIndex = index + 10;
+
+  return (
+    <motion.div
+      style={{
+        y,
+        scale,
+        opacity,
+        zIndex,
+        willChange: "transform, opacity"
+      }}
+      className="absolute w-full max-w-6xl aspect-[21/9] flex flex-col lg:flex-row bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] rounded-sm overflow-hidden border border-black/[0.05]"
+    >
+      {/* Visual Side */}
+      <div className="relative flex-[1.4] overflow-hidden bg-[#f8f8f8] flex items-center justify-center p-4">
+        <img
+          src={project.image}
+          className="w-full h-full object-contain"
+          alt={project.title}
+          loading="lazy"
+        />
+        <div className="absolute inset-0 shadow-[inset_0_0_40px_rgba(0,0,0,0.02)] pointer-events-none" />
+      </div>
+
+      {/* Content Side */}
+      <div className="flex-1 p-8 lg:p-14 flex flex-col justify-between bg-white">
+        <div className="flex flex-col gap-8">
+          <div className="flex items-center justify-between">
+            <span className="text-[9px] font-mono font-bold text-black/20 uppercase tracking-widest">Digital Solution</span>
+            <div className="flex gap-2">
+              {project.tags.slice(0, 1).map(tag => (
+                <span key={tag} className="text-[8px] font-black uppercase tracking-widest text-[#FFC533] border border-[#FFC533]/20 px-2 py-1">{tag}</span>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <h3 className="text-3xl lg:text-5xl font-black uppercase tracking-tighter leading-tight text-black">
+              {project.title}
+            </h3>
+            <p className="text-base lg:text-lg font-medium text-black/40 leading-relaxed max-w-md italic border-l-2 border-black/5 pl-6">
+              "{project.description}"
             </p>
-          </header>
-          <div className="hidden lg:block h-px flex-1 bg-border mx-12 mb-6"></div>
-          <div className="text-[10px] font-bold uppercase tracking-widest text-black/40 mb-6">
-            REAL IMPACT
           </div>
         </div>
 
-        <div className="flex flex-col gap-40">
-          {projects.map((project, index) => (
-            <article
-              key={project.id}
-              className="group grid grid-cols-1 lg:grid-cols-12 gap-16 items-center"
+        <div className="mt-8 flex flex-col gap-5">
+          <div className="h-[1px] w-full bg-black/5" />
+          <div className="flex items-center justify-between">
+            <motion.a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] text-black"
             >
-              <div
-                className="lg:col-span-7 overflow-hidden transition-all duration-500 cursor-pointer relative"
-                onClick={() => setSelectedProject(project)}
-              >
-                <div className="absolute inset-0 bg-black/5 skewed-container -z-10"></div>
-                <motion.div style={{ y: yImage }}>
-                    <img
-                      src={project.image}
-                      alt={`${project.title} success case`}
-                      className="w-full aspect-[16/9] object-contain grayscale group-hover:grayscale-0 transition-all duration-700 pointer-events-none scale-110"
-                      loading="lazy"
-                    />
-                </motion.div>
+              <span className="border-b-2 border-transparent group-hover:border-[#FFC533] transition-all">Visit Website</span>
+              <div className="w-10 h-10 rounded-full border border-black/5 flex items-center justify-center group-hover:bg-[#FFC533] group-hover:border-[#FFC533] group-hover:text-white transition-all">
+                <ArrowUpRight size={16} />
               </div>
+            </motion.a>
 
-              <div className="lg:col-span-5 flex flex-col gap-8">
-                <div className="flex items-center gap-4">
-                  <span className="text-xs font-mono text-secondary">{project.id}</span>
-                  <span className="w-8 h-[1px] bg-border group-hover:bg-black transition-all"></span>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-secondary group-hover:text-black transition-all">
-                    {project.category}
-                  </span>
-                </div>
-
-                <h3
-                  className="text-4xl lg:text-5xl font-black tracking-tighter group-hover:underline underline-offset-8 cursor-pointer leading-none"
-                  onClick={() => setSelectedProject(project)}
-                >
-                  {project.title}
-                </h3>
-
-                <p className="text-xl text-secondary leading-relaxed font-medium">
-                  {project.description}
-                </p>
-
-                <div className="mt-4">
-                  <button
-                    onClick={() => setSelectedProject(project)}
-                    className="btn-primary flex items-center justify-center gap-3 w-fit group px-10 py-5"
-                    aria-label={`View project details for ${project.title}`}
-                  >
-                    LEARN THE STRATEGY
-                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </div>
-              </div>
-            </article>
-          ))}
+            <Plus size={14} className="opacity-10" />
+          </div>
         </div>
       </div>
-
-      {/* Project Modal */}
-      <AnimatePresence>
-        {selectedProject && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] bg-white flex flex-col"
-          >
-            {/* Floating Close Button */}
-            <button
-              onClick={() => setSelectedProject(null)}
-              className="fixed top-12 right-8 w-14 h-14 bg-black text-white flex items-center justify-center rounded-full hover:scale-110 transition-all z-[10000]"
-              aria-label="Close"
-            >
-              <X size={28} />
-            </button>
-
-            {/* Modal Content */}
-            <div className="flex-1 overflow-y-auto px-6 lg:px-12 py-24 no-scrollbar">
-              <div className="max-w-7xl mx-auto">
-                <div className="mb-16">
-                  <div className="flex items-center gap-4 mb-8">
-                    <span className="text-xs font-mono text-black">{selectedProject.id}</span>
-                    <span className="w-12 h-px bg-black"></span>
-                    <span className="text-xs font-bold uppercase tracking-widest text-black">{selectedProject.category}</span>
-                  </div>
-                  <h2 className="text-6xl lg:text-9xl font-black uppercase tracking-tighter mb-12 text-black underline decoration-black/5 underline-offset-[20px]">{selectedProject.title}</h2>
-
-                  <div className="w-full aspect-[21/9] overflow-hidden mb-24 flex items-center justify-center bg-black/5 rounded-3xl p-12">
-                    <img
-                      src={selectedProject.image}
-                      alt={selectedProject.title}
-                      className="max-h-full max-w-full object-contain filter drop-shadow-2xl"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32">
-                  <div className="flex flex-col gap-8">
-                    <p className="text-2xl lg:text-4xl font-bold leading-tight text-foreground">
-                      {selectedProject.description}
-                    </p>
-                    <div className="w-24 h-2 bg-black"></div>
-                  </div>
-
-                  <div className="flex flex-col gap-12">
-                    <p className="text-xl text-secondary leading-relaxed font-medium">
-                      {selectedProject.longDescription}
-                    </p>
-
-                    <a
-                      href={selectedProject.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-primary group flex items-center gap-4 transition-all w-fit px-12 py-6 text-lg"
-                    >
-                      VISIT LIVE SITE
-                      <ExternalLink size={20} className="group-hover:rotate-45 transition-transform" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </section>
+    </motion.div>
   );
 };
 
 export default Portfolio;
+
+
+
+
+
+
 
