@@ -13,7 +13,7 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: initial;
     -webkit-tap-highlight-color: transparent;
     overflow-x: hidden;
   }
@@ -120,4 +120,26 @@
 .no-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+/* Lenis Smooth Scroll Support */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }

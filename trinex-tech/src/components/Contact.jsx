@@ -63,14 +63,14 @@ const Contact = () => {
 
             <form className="flex flex-col gap-12" aria-label="Contact form">
                <div className="relative">
-                  <input type="text" placeholder="Your Name" className="underline-input" aria-label="Full Name" required />
+                  <input type="text" placeholder="Your Name" className="underline-input text-base" aria-label="Full Name" required />
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-500 group-focus-within:w-full"></span>
                </div>
                <div className="relative">
-                  <input type="email" placeholder="Your Email" className="underline-input" aria-label="Email Address" required />
+                  <input type="email" placeholder="Your Email" className="underline-input text-base" aria-label="Email Address" required />
                </div>
                <div className="relative">
-                  <textarea placeholder="Your Message" rows="4" className="underline-input resize-none" aria-label="Project Details or Message" required></textarea>
+                  <textarea placeholder="Your Message" rows="4" className="underline-input text-base resize-none" aria-label="Project Details or Message" required></textarea>
                </div>
                <button type="submit" className="btn-primary flex items-center justify-center gap-3 w-full group">
                  SEND INQUIRY

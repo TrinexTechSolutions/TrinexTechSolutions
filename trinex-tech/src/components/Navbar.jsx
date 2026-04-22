@@ -33,11 +33,9 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Vision', href: '#about', isExternal: false },
-    { name: 'Strategy', href: '#barrier', isExternal: false },
-    { name: 'Solutions', href: '#solutions', isExternal: false },
-    { name: 'Team', href: '/team', isExternal: true },
     { name: 'Services', href: '#services', isExternal: false },
     { name: 'Portfolio', href: '#portfolio', isExternal: false },
+    { name: 'Team', href: '/team', isExternal: true },
   ];
 
   const isHome = location.pathname === '/';
@@ -52,7 +50,7 @@ const Navbar = () => {
         : 'absolute top-0 bg-transparent py-6 -translate-y-2 md:translate-y-0 opacity-100'
         }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-3 items-center">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center md:grid md:grid-cols-3">
         {/* Left: Brand Logo */}
         <div className="flex justify-start">
           <Link to="/" className="flex items-center group" onClick={() => { setActiveSection('#'); window.scrollTo(0, 0); }}>

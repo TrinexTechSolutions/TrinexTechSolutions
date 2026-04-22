@@ -1,9 +1,10 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Sparkles, Globe, Zap } from 'lucide-react';
 
 const Hero = () => {
   const containerRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
@@ -11,8 +12,8 @@ const Hero = () => {
 
   // Immediate Reveal Logic
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const yText = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  const yImage = useTransform(scrollYProgress, [0, 1], [0, -250]);
+  const yText = useTransform(scrollYProgress, [0, 1], [0, shouldReduceMotion ? 0 : -150]);
+  const yImage = useTransform(scrollYProgress, [0, 1], [0, shouldReduceMotion ? 0 : -250]);
   
   // Early Diagonal Cut Animation (Starts after slight scroll)
   const cutY = useTransform(scrollYProgress, [0.3, 0.95], ["100%", "0%"]);
@@ -33,6 +34,7 @@ const Hero = () => {
             src="/Hero_Minimalist.png" 
             className="w-full h-full object-cover opacity-20"
             alt="Minimalist Architecture"
+            loading="eager"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
         </motion.div>
