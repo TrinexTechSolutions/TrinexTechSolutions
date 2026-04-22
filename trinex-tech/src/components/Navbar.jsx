@@ -11,7 +11,8 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > window.innerHeight * 1.7);
+      const heroHeight = document.getElementById('about-section')?.offsetTop || window.innerHeight;
+      setIsScrolled(window.scrollY >= heroHeight);
 
       if (location.pathname === '/') {
         const sections = ['about', 'barrier', 'solutions', 'pivot', 'services', 'portfolio', 'contact'];
@@ -36,6 +37,7 @@ const Navbar = () => {
     { name: 'Services', href: '#services', isExternal: false },
     { name: 'Portfolio', href: '#portfolio', isExternal: false },
     { name: 'Team', href: '/team', isExternal: true },
+    { name: 'Contact', href: '#contact', isExternal: false },
   ];
 
   const isHome = location.pathname === '/';
@@ -43,17 +45,40 @@ const Navbar = () => {
   const sectionTheme = isHome && !isScrolled ? 'text-white' : 'text-black';
   const sectionThemeMuted = isHome && !isScrolled ? 'text-white/60' : 'text-black/60';
 
+  const handleNavClick = (e, href) => {
+    if (href.startsWith('#') && location.pathname === '/') {
+      e.preventDefault();
+      const element = document.querySelector(href);
+      if (element) {
+        const offset = 80; // Navbar height offset
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = element.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        setActiveSection(href);
+        setMobileMenuOpen(false);
+      }
+    } else {
+      setMobileMenuOpen(false);
+    }
+  };
+
   return (
     <nav
-      className={`left-0 right-0 z-[100] transition-all duration-700 ${isScrolled || !isHome
-        ? 'fixed top-0 bg-white/95 backdrop-blur-md py-4 shadow-sm translate-y-0 opacity-100'
-        : 'absolute top-0 bg-transparent py-6 -translate-y-2 md:translate-y-0 opacity-100'
+      className={`left-0 right-0 z-[100] transition-all ${isScrolled || !isHome
+        ? 'fixed top-0 bg-white/95 backdrop-blur-md py-4 shadow-sm translate-y-0'
+        : 'absolute top-0 bg-transparent py-4'
         }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center md:grid md:grid-cols-3">
         {/* Left: Brand Logo */}
         <div className="flex justify-start">
-          <Link to="/" className="flex items-center group" onClick={() => { setActiveSection('#'); window.scrollTo(0, 0); }}>
+          <Link to="/" className="flex items-center group" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); setActiveSection('#'); }}>
             <img
               src={!isScrolled && isHome ? "/Trinex_logo_white.svg" : "/trinex_logo.svg"}
               alt="Trinex Tech"
@@ -85,7 +110,7 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={location.pathname === '/' ? link.href : `/${link.href}`}
-                onClick={() => setActiveSection(link.href)}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className={`relative text-xs font-black uppercase tracking-widest transition-colors duration-300 whitespace-nowrap ${activeSection === link.href ? sectionTheme : `${sectionThemeMuted} hover:${sectionTheme}`
                   }`}
               >
@@ -150,10 +175,7 @@ const Navbar = () => {
                     href={location.pathname === '/' ? link.href : `/${link.href}`}
                     className={`text-xl font-black uppercase tracking-widest ${activeSection === link.href ? 'text-black' : 'text-black/40'
                       }`}
-                    onClick={() => {
-                      setActiveSection(link.href);
-                      setMobileMenuOpen(false);
-                    }}
+                    onClick={(e) => handleNavClick(e, link.href)}
                   >
                     {link.name}
                   </a>

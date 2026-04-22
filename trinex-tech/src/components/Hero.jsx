@@ -21,9 +21,9 @@ const Hero = () => {
   return (
     <section 
       ref={containerRef} 
-      className="relative h-[200vh] bg-black"
+      className="relative min-h-screen bg-black flex items-center"
     >
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+      <div className="relative w-full flex items-center justify-center overflow-hidden py-8">
         
         {/* BACKGROUND LAYER: Optimized Architectural Minimalist Canvas */}
         <motion.div 
@@ -63,7 +63,7 @@ const Hero = () => {
             className="w-full h-full flex flex-col justify-between py-6 md:py-8 will-change-transform"
           >
             {/* TOP LEFT: The Vision */}
-            <div className="flex flex-col items-start text-left max-w-2xl self-start mt-16">
+            <div className="flex flex-col items-start text-left max-w-2xl self-start mt-8">
               <h1 className="text-[clamp(2.5rem,8vw,6.5rem)] font-bold tracking-tighter leading-[0.85] text-white uppercase mb-8">
                  BUILDING <br />
                  THE <span className="italic font-light text-[#FFC533]/90 lowercase">New Era.</span>

@@ -9,22 +9,28 @@ const LoadingScreen = ({ onComplete }) => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(timer);
-          setTimeout(onComplete, 500);
+          onComplete(); // Call immediately when 100 is reached
           return 100;
         }
         return prev + 1;
       });
-    }, 20);
+    }, 15); // Faster progress increment
 
     return () => clearInterval(timer);
   }, [onComplete]);
 
   return (
     <motion.div
-      initial={{ opacity: 1 }}
+      initial={{ clipPath: "circle(150% at 50% 50%)", opacity: 1 }}
+      animate={{ clipPath: "circle(150% at 50% 50%)", opacity: 1 }}
       exit={{ 
-        y: "-100%",
-        transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
+        clipPath: "circle(0% at 50% 50%)",
+        opacity: 0,
+        scale: 1.2,
+        transition: { 
+          duration: 1.2, 
+          ease: [0.76, 0, 0.24, 1] 
+        }
       }}
       className="fixed inset-0 z-[10000] bg-black flex flex-col items-center justify-center"
     >

@@ -44,7 +44,9 @@ const App = () => {
           {/* Background Subtle Noise/Grain Effect */}
           <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.02] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
           
-          <Suspense fallback={<LoadingScreen onComplete={() => {}} />}>
+          <Suspense fallback={
+            <div className="fixed top-0 left-0 right-0 h-1 z-[10000] bg-[#FFC533] origin-left animate-pulse" />
+          }>
             <Navbar />
             <Routes>
               <Route path="/" element={<Home />} />
